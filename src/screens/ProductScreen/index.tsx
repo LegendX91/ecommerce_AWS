@@ -13,7 +13,7 @@ const ProductScreen = () => {
     const [quantity, setQuantity] = useState(1);
 
     return (
-        <View>
+        <View style={style.root}>
             <Text style={style.title}>{product.title}</Text>
             
             <Picker
