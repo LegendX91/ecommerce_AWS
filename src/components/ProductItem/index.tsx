@@ -3,26 +3,43 @@ import React from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import style from './style';
 
-const ProductItem = () => {
-  return (
+interface ProductItemProps {
+    item: {
+        id: string,
+        title: string,
+        image: string,
+        avgRating: number,
+        ratings: number,
+        price: number,
+        oldPrice?: number,
+    }
+}
+
+const ProductItem = (props: ProductItemProps) => {
+
+    const {item} = props;
+
+    return (
         <View style={style.root}>
             <Image  style={style.image} 
-                    source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/cleanarchitecture.jpg'}} />
+                    source={{ uri: item.image}} />
             <View style={style.rightContainer}>
                 <Text   style={style.title}
                         numberOfLines={3}>
-                            Logitech MX Master 3 Advanced Wireless Mouse for Mac - Bluetooth/USB
+                            {item.title}
                 </Text>
                 <View style={style.rating}>
-                    <FontAwesome style={style.star} name="star" size={18} color={"#e47911"} />
-                    <FontAwesome style={style.star} name="star" size={18} color={"#e47911"} />
-                    <FontAwesome style={style.star} name="star" size={18} color={"#e47911"} />
-                    <FontAwesome style={style.star} name="star-half-full" size={18} color={"#e47911"} />
-                    <FontAwesome style={style.star} name="star-o" size={18} color={"#e47911"} />
-                    <Text style={{color:'grey', marginLeft: 10}}>13.023</Text>
+                    {[0,0,0,0,0].map((el, i) => 
+                        <FontAwesome    
+                                        key={`${item.id} - ${i}`}
+                                        style={style.star} 
+                                        name={i < Math.floor(item.avgRating) ? "star" : 'star-o'} 
+                                        size={18} 
+                                        color={"#e47911"} />)}
+                    <Text style={{color:'grey', marginLeft: 10}}>{item.ratings}</Text>
                 </View>
-                <Text style={style.price}>from €13.57 
-                    <Text style={style.oldPrice}>€17.00</Text>
+                <Text style={style.price}>from €{item.price}
+                    { item.oldPrice && <Text style={style.oldPrice}>€{item.oldPrice}</Text>}
                 </Text>
                 
             </View>
