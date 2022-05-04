@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StatusBar, SafeAreaView, useColorScheme, Text } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
-export default function App() {
+const App = () => {
+
+  const isDarkMode = useColorScheme() === "dark";
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.dark : Colors.lighter,
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={backgroundStyle}>
+      <HomeScreen />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
