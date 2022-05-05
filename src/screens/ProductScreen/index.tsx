@@ -2,18 +2,21 @@ import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import style from './style';
-import { Product } from '../../models';
-import { DataStore } from 'aws-amplify';
+import { Product, CartProduct } from '../../models';
+import { DataStore, Auth } from 'aws-amplify';
 import { Picker } from '@react-native-picker/picker';
 import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductScreen = () => {
 
+    const navigation = useNavigation();
+
     const [product, setProduct] = useState<Product|undefined>(undefined);
 
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
     const [quantity, setQuantity] = useState(1);
 
     const route= useRoute(); //parametri
@@ -39,6 +42,25 @@ const ProductScreen = () => {
             setSelectedOption(product.options[0]);
         }
     }, [product]);
+
+    const onAddToCart = async() => {
+        // creazione del CartProduct dalle varie fonti in fetch
+        // Pull dei dati utente
+        const userData = await Auth.currentAuthenticatedUser(); 
+        
+        if(!product || !userData) // il prodotto deve essere definito per la creazione di CartProduct
+            return;
+
+        const newCartProduct = new CartProduct({
+            userSub: userData.attributes.sub,
+            quantity,
+            option: selectedOption,
+            productID: product.id,
+        });
+
+        DataStore.save(newCartProduct); // salva nel DataStore l'oggetto creato
+        navigation.navigate("Shopping Cart");
+    }
 
     // Activity Indicator se in fetching da DataStore
     if (!product){
@@ -70,7 +92,7 @@ const ProductScreen = () => {
                     <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
                 </View>
 
-                <Button text={"Add to Cart"} onPress={() => {console.warn("Added")}} ></Button>
+                <Button text={"Add to Cart"} onPress={onAddToCart} ></Button>
                 <Button text={"Buy Now!"} onPress={() => {console.warn("Bought!")}} ></Button>
 
             </ScrollView>
