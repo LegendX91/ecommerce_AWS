@@ -9,11 +9,11 @@ interface CartProductItemProps {
         id: string,
         quantity: number,
         option?: string,
-        item: {
+        product: {
             id: string,
             title: string,
             image: string,
-            avgRating: number,
+            avgRatings: number,
             ratings: number,
             price: number,
             oldPrice?: number,
@@ -23,7 +23,7 @@ interface CartProductItemProps {
 
 const CartProductItem = ({cartItem}: CartProductItemProps) => {
 
-    const {quantity: quantityProp, item} = cartItem;
+    const {quantity: quantityProp, product} = cartItem;
 
     const [quantity, setQuantity] = useState(quantityProp);
 
@@ -31,24 +31,24 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
         <View>
             <View style={style.root}>
                 <Image  style={style.image} 
-                        source={{ uri: item.image}} />
+                        source={{ uri: product.image}} />
                 <View style={style.rightContainer}>
                     <Text   style={style.title}
                             numberOfLines={3}>
-                                {item.title}
+                                {product.title}
                     </Text>
                     <View style={style.rating}>
                         {[0,0,0,0,0].map((el, i) => 
                             <FontAwesome    
-                                            key={`${item.id} - ${i}`}
+                                            key={`${product.id} - ${i}`}
                                             style={style.star} 
-                                            name={i < Math.floor(item.avgRating) ? "star" : 'star-o'} 
+                                            name={i < Math.floor(product.avgRatings) ? "star" : 'star-o'} 
                                             size={18} 
                                             color={"#e47911"} />)}
-                        <Text style={{color:'grey', marginLeft: 10}}>{item.ratings}</Text>
+                        <Text style={{color:'grey', marginLeft: 10}}>{product.ratings}</Text>
                     </View>
-                    <Text style={style.price}>from €{item.price}
-                        { item.oldPrice && <Text style={style.oldPrice}>€{item.oldPrice}</Text>}
+                    <Text style={style.price}>from €{product.price.toFixed(2)}
+                        { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
                     </Text>
                     
                 </View>
