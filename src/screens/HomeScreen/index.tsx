@@ -1,19 +1,31 @@
 import { View, StyleSheet, FlatList } from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductItem from '../../components/ProductItem';
-import products from '../../data/products';
+import { DataStore } from 'aws-amplify';
+import { Product } from '../../models';
 
 const HomeScreen = ({searchValue}: {searchValue: string}) => {
     
-  return (
-    <View style={style.page}>
-        <FlatList
-            data={products}
-            renderItem={({item}) => <ProductItem item={item} />}
-            showsVerticalScrollIndicator={false}
-        />
-    </View>
-    )
+    const [products, setProducts] = useState<Product[]>([]);
+
+    const fetchProducts = async() => {
+        const results = await DataStore.query(Product);
+        setProducts(results);
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, [])
+
+    return (
+        <View style={style.page}>
+            <FlatList
+                data={products}
+                renderItem={({item}) => <ProductItem item={item} />}
+                showsVerticalScrollIndicator={false}
+            />
+        </View>
+        )
 }
 
 const style = StyleSheet.create({
