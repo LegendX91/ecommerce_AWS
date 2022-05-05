@@ -1,8 +1,14 @@
 import React from 'react';
-import { StatusBar, View, useColorScheme, Text } from 'react-native';
+import { StatusBar, View, useColorScheme} from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
 import 'react-native-gesture-handler';
+
+import { Amplify } from 'aws-amplify'
+import awsconfig from './src/aws-exports'
+Amplify.configure(awsconfig);
+
+import { withAuthenticator } from 'aws-amplify-react-native';
 
 const App = () => {
 
@@ -21,4 +27,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
