@@ -4,28 +4,30 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import style from './style';
 import QuantitySelector from '../QuantitySelector';
 
+import { DataStore } from 'aws-amplify';
+import { CartProduct } from '../../models';
+
 interface CartProductItemProps {
-    cartItem: {
-        id: string,
-        quantity: number,
-        option?: string,
-        product: {
-            id: string,
-            title: string,
-            image: string,
-            avgRatings: number,
-            ratings: number,
-            price: number,
-            oldPrice?: number,
-        }
-    }
+    cartItem: CartProduct
 }
+
 
 const CartProductItem = ({cartItem}: CartProductItemProps) => {
 
-    const {quantity: quantityProp, product} = cartItem;
+    const {product, ...cartProduct} = cartItem;
 
-    const [quantity, setQuantity] = useState(quantityProp);
+    // Aggiornare il valore di Quantity nel datastore
+    const updateQuantity = async (newQuantity: number) => {
+        // Estraggo il prodotto originale
+        const original = await DataStore.query(CartProduct, cartProduct.id);
+
+        // Aggiorno il prodotto originale sulla tabella CartProduct con il valore aggiornato
+        await DataStore.save(
+            CartProduct.copyOf(original, updated => {
+                updated.quantity = newQuantity;
+            })
+        )
+    }
 
     return (
         <View>
@@ -53,7 +55,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                     
                 </View>
             </View>
-            <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+            <QuantitySelector quantity={cartProduct.quantity} setQuantity={updateQuantity} />
         </View>
   )
 }

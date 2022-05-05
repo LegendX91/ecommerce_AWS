@@ -97,6 +97,7 @@ const ShoppingCartScreen = () => {
 
 const style = StyleSheet.create({
     page: {
+        marginBottom: 100,
         padding: 10,
     }
 })

@@ -15,7 +15,7 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
 
     useEffect(() => {
         fetchProducts();
-    }, [])
+    }, [products])
 
     return (
         <View style={style.page}>

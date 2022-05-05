@@ -25,12 +25,6 @@ const BottomTabNavigator = () => {
               headerShown: false,
             }} />
           <Tab.Screen 
-            component={HomeScreen} 
-            name="Profile"
-            options={{
-              tabBarIcon:(({color}) => <Entypo name="user" size={30} color={color}/>)
-            }}  />
-          <Tab.Screen 
             component={ShoppingCartStack} 
             name="Shopping Cart"
             options={{
