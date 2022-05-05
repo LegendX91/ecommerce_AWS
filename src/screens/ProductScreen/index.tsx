@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import styles from './style';
 import style from './style';
@@ -14,7 +14,7 @@ const ProductScreen = () => {
     const [quantity, setQuantity] = useState(1);
 
     return (
-        <View style={style.root}>
+        <ScrollView style={style.root}>
             <Text style={style.title}>{product.title}</Text>
 
             <ImageCarousel images={product.images} />
@@ -41,7 +41,7 @@ const ProductScreen = () => {
             <Button text={"Add to Cart"} onPress={() => {console.warn("Added")}} ></Button>
             <Button text={"Buy Now!"} onPress={() => {console.warn("Bought!")}} ></Button>
 
-        </View>
+        </ScrollView>
   )
 }
 

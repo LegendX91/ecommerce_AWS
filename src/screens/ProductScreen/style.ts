@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
     root: {
         padding: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     price: {
         fontSize: 18,

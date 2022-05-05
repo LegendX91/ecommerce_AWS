@@ -9,6 +9,7 @@ const HomeScreen = () => {
         <FlatList
             data={products}
             renderItem={({item}) => <ProductItem item={item} />}
+            showsVerticalScrollIndicator={false}
         />
     </View>
     )

@@ -2,7 +2,7 @@ import { View, FlatList, Image, StyleSheet, useWindowDimensions } from 'react-na
 import React, { useCallback, useState } from 'react'
 
 
-const ImageCarousel = ({images}: {images: [string]}) => {
+const ImageCarousel = ({images}: {images: string[]}) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const windowWidth = useWindowDimensions().width;

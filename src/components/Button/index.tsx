@@ -23,7 +23,8 @@ const style = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: '#a15e1b'
+        borderColor: '#a15e1b',
+        marginBottom: 15,
     },
     text: {
         fontSize: 16,
