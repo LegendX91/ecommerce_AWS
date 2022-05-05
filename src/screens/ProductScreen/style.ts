@@ -15,6 +15,8 @@ const style = StyleSheet.create({
         textDecorationLine: 'line-through'
     },
     title: {
+        fontSize: 18,
+        fontWeight: 'bold'
     },
     description: {
         marginVertical: 10,
