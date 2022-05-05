@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "ecommerceapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\Gabri\\OneDrive\\Desktop\\React Development\\AWS Experiments\\ecommerceapp\\amplify\\backend\\api\\ecommerceapp\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-05-05T14:43:07.937Z",
+      "keyDescription": "testing key"
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}
