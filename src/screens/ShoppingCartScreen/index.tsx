@@ -1,11 +1,18 @@
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import CartProductItem from '../../components/CartProductItem';
 import Button from '../../components/Button';
 
 import products from '../../data/cart';
 
 const ShoppingCartScreen = () => {
+
+    const navigation = useNavigation();
+
+    const onCheckout = () => {
+        navigation.navigate("Address Details");
+    }
 
     const totalPrice = products.reduce(
         (sumPrice, products) => 
@@ -18,8 +25,8 @@ const ShoppingCartScreen = () => {
                 <Text style={{fontSize: 18}}>Subtotal ({products.length} items): 
                     <Text style={{color: '#e47911', fontWeight: 'bold'}}>€{totalPrice.toFixed(2)}</Text>
                 </Text>
-                <Button text="Proceed to CheckOut" 
-                        onPress={() => console.warn('Go to CheckOut')}
+                <Button text="Proceed to CheckOut"
+                        onPress={onCheckout}
                 />
             </View>
             <FlatList

@@ -1,23 +1,17 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
-import BottomTabNavigator from './bottomTabNav';
+import ProductScreen from '../screens/ProductScreen';
 
-const Root = createStackNavigator();
+const Stack = createStackNavigator();
 
-const Router = () => {
+const HomeStack = () => {
   return (
-    <NavigationContainer>
-       <Root.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
-       >
-           <Root.Screen component={BottomTabNavigator} name="HomeTabs" />
-        </Root.Navigator> 
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen component={HomeScreen} name="Home Screen" />
+      <Stack.Screen component={ProductScreen} name="Product Details" />
+    </Stack.Navigator>
   )
 }
 
-export default Router
+export default HomeStack;

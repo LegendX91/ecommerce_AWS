@@ -12,8 +12,7 @@ const Router = () => {
        <Root.Navigator
         screenOptions={{
           headerShown: false
-        }}
-       >
+        }}>
            <Root.Screen component={BottomTabNavigator} name="HomeTabs" />
         </Root.Navigator> 
     </NavigationContainer>
