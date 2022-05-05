@@ -1,8 +1,9 @@
-import { View, Text, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import style from './style';
-import product from '../../data/product';
+import { Product } from '../../models';
+import { DataStore } from 'aws-amplify';
 import { Picker } from '@react-native-picker/picker';
 import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
@@ -10,41 +11,71 @@ import ImageCarousel from '../../components/ImageCarousel';
 
 const ProductScreen = () => {
 
-    const [selectedOption, setSelectedOption] = useState(product.options ? product.options[0] : null);
+    const [product, setProduct] = useState<Product|undefined>(undefined);
+
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [quantity, setQuantity] = useState(1);
 
     const route= useRoute(); //parametri
 
-    return (
-        <ScrollView style={style.root}>
-            <Text style={style.title}>{product.title}</Text>
+    const fetchContent = async() => {
+        console.log("no");
+        if(!route.params?.id)
+            return;
+        const result = await DataStore.query(Product, route.params.id);
+        setProduct(result);
+    }
 
-            <ImageCarousel images={product.images} />
-            
-            <Picker
-                selectedValue={selectedOption}
-                onValueChange={(itemValue) => setSelectedOption(itemValue)}
-            >
-                {product.options.map(option => <Picker.Item label={option} value={option} />)}
-            </Picker>
+    useEffect(() => {
+        // fetch
+        fetchContent();
+    }, [route.params?.id]);
 
-            <Text style={style.price}>from €{product.price}
-                { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice}</Text>}
-            </Text>
 
-            <Text style={style.description}>
-                {product.description}
-            </Text>
 
-            <View>
-                <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
-            </View>
+    useEffect(() => {
+        // controllo opzioni al variare prodotto
+        if (product?.options){
+            setSelectedOption(product.options[0]);
+        }
+    }, [product]);
 
-            <Button text={"Add to Cart"} onPress={() => {console.warn("Added")}} ></Button>
-            <Button text={"Buy Now!"} onPress={() => {console.warn("Bought!")}} ></Button>
+    // Activity Indicator se in fetching da DataStore
+    if (!product){
+        // in fetching
+        return <ActivityIndicator />
+    }else{
+        return (
+            <ScrollView style={style.root}>
+                <Text style={style.title}>{product.title}</Text>
 
-        </ScrollView>
-  )
+                <ImageCarousel images={product.images} />
+                
+                <Picker
+                    selectedValue={selectedOption}
+                    onValueChange={(itemValue) => setSelectedOption(itemValue)}
+                >
+                    {product.options.map(option => <Picker.Item label={option} value={option} />)}
+                </Picker>
+
+                <Text style={style.price}>from €{product.price.toFixed(2)}
+                    { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
+                </Text>
+
+                <Text style={style.description}>
+                    {product.description}
+                </Text>
+
+                <View>
+                    <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
+                </View>
+
+                <Button text={"Add to Cart"} onPress={() => {console.warn("Added")}} ></Button>
+                <Button text={"Buy Now!"} onPress={() => {console.warn("Bought!")}} ></Button>
+
+            </ScrollView>
+    )
+}
 }
 
 export default ProductScreen;

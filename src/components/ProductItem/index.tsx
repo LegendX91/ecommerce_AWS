@@ -9,7 +9,7 @@ interface ProductItemProps {
         id: string,
         title: string,
         image: string,
-        avgRating: number,
+        avgRatings: number,
         ratings: number,
         price: number,
         oldPrice?: number,
@@ -40,13 +40,13 @@ const ProductItem = (props: ProductItemProps) => {
                         <FontAwesome    
                                         key={`${item.id} - ${i}`}
                                         style={style.star} 
-                                        name={i < Math.floor(item.avgRating) ? "star" : 'star-o'} 
+                                        name={i < Math.floor(item.avgRatings) ? "star" : 'star-o'} 
                                         size={18} 
                                         color={"#e47911"} />)}
                     <Text style={{color:'grey', marginLeft: 10}}>{item.ratings}</Text>
                 </View>
-                <Text style={style.price}>from €{item.price}
-                    { item.oldPrice && <Text style={style.oldPrice}>€{item.oldPrice}</Text>}
+                <Text style={style.price}>from €{item.price.toFixed(2)}
+                    { item.oldPrice && <Text style={style.oldPrice}>€{item.oldPrice.toFixed(2)}</Text>}
                 </Text>
                 
             </View>
