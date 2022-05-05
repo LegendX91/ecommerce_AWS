@@ -11,7 +11,7 @@ const ShoppingCartScreen = () => {
     const navigation = useNavigation();
 
     const onCheckout = () => {
-        navigation.navigate("Address Details");
+        navigation.navigate("Address Details", {});
     }
 
     const totalPrice = products.reduce(

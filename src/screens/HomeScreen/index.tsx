@@ -3,7 +3,8 @@ import React from 'react';
 import ProductItem from '../../components/ProductItem';
 import products from '../../data/products';
 
-const HomeScreen = () => {
+const HomeScreen = ({searchValue}: {searchValue: string}) => {
+    
   return (
     <View style={style.page}>
         <FlatList
