@@ -15,6 +15,8 @@ type Product @model @auth(rules: [{ allow: public}]){
 
   price: Float!
   oldPrice: Float
+
+  orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
 type CartProduct @model {
@@ -23,8 +25,8 @@ type CartProduct @model {
   option: String
   userSub: String! # utente collegato all'ordine nel cart
 
-  productID: ID!
-  product: Product @hasOne(fields:["productID"]) # relazione per prodotto da ID
+  productID: ID! @index(name: "byProduct")
+  product: Product @belongsTo(fields:["productID"]) # relazione per prodotto da ID
 }
 
 # WIP

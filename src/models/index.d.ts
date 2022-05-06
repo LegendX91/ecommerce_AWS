@@ -23,6 +23,7 @@ export declare class Product {
   readonly ratings?: number | null;
   readonly price: number;
   readonly oldPrice?: number | null;
+  readonly orders?: (CartProduct | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Product, ProductMetaData>);
@@ -34,7 +35,6 @@ export declare class CartProduct {
   readonly quantity: number;
   readonly option?: string | null;
   readonly userSub: string;
-  readonly productID: string;
   readonly product?: Product | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

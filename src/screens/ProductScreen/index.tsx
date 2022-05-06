@@ -22,7 +22,6 @@ const ProductScreen = () => {
     const route= useRoute(); //parametri
 
     const fetchContent = async() => {
-        console.log("no");
         if(!route.params?.id)
             return;
         const result = await DataStore.query(Product, route.params.id);

@@ -15,6 +15,22 @@ export const getProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -41,6 +57,10 @@ export const listProducts = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -76,6 +96,10 @@ export const syncProducts = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -106,6 +130,10 @@ export const getCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version

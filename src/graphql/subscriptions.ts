@@ -15,6 +15,22 @@ export const onCreateProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -36,6 +52,22 @@ export const onUpdateProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -57,6 +89,22 @@ export const onDeleteProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -84,6 +132,10 @@ export const onCreateCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -117,6 +169,10 @@ export const onUpdateCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -150,6 +206,10 @@ export const onDeleteCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version

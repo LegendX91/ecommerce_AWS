@@ -75,6 +75,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "orders": {
+                    "name": "orders",
+                    "isArray": true,
+                    "type": {
+                        "model": "CartProduct"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "product"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -148,13 +162,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "productID": {
-                    "name": "productID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "product": {
                     "name": "product",
                     "isArray": false,
@@ -164,8 +171,7 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
+                        "connectionType": "BELONGS_TO",
                         "targetName": "productID"
                     }
                 },
@@ -192,11 +198,20 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byProduct",
+                        "fields": [
+                            "productID"
+                        ]
+                    }
                 }
             ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "9b8b83a4e048879e9ea5dca2ad1efb0d"
+    "version": "5b26b6cee61d2ed9299bbb4fddc1154b"
 };

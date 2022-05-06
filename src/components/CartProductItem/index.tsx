@@ -28,7 +28,10 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
             })
         )
     }
-
+    
+    //if(cartProduct.quantity == 0){
+    //   return <View></View>
+    //}else{
     return (
         <View>
             <View style={style.root}>

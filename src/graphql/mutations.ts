@@ -18,6 +18,22 @@ export const createProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -42,6 +58,22 @@ export const updateProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -66,6 +98,22 @@ export const deleteProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -96,6 +144,10 @@ export const createCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -132,6 +184,10 @@ export const updateCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -168,6 +224,10 @@ export const deleteCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
+        orders {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
