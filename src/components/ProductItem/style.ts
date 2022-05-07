@@ -17,12 +17,15 @@ const style = StyleSheet.create({
         margin: 5,
     },
     title: {
-        fontSize: 16,
+        textAlign: 'justify',
+        fontSize: 14,
+        fontWeight: 'bold',
         fontStyle: 'italic',
     },
     price: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontStyle: 'italic',
+        fontWeight: 'bold'
     },
     oldPrice: {
         fontSize: 12,
@@ -30,6 +33,8 @@ const style = StyleSheet.create({
         textDecorationLine: 'line-through'
     },
     rightContainer: {
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
         padding: 10,
         flex: 3,
     },

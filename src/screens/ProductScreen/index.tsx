@@ -94,7 +94,7 @@ const ProductScreen = () => {
                 
 
                 <Text style={style.price}>Price: €{(Number.parseFloat(product.price) * quantity).toFixed(2)}
-                    { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
+                    { product.oldPrice && <Text style={style.oldPrice}>€{(Number.parseFloat(product?.oldPrice)*quantity).toFixed(2)}</Text>}
                 </Text>
 
                 <Text style={style.description}>

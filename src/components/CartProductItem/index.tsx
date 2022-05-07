@@ -53,7 +53,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                         </Text> : <View></View>
                     }
                     <Text style={style.price}>Total: € {(Number.parseFloat(product.price)*cartProduct.quantity).toFixed(2)}
-                        { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
+                        { product.oldPrice && <Text style={style.oldPrice}>€{(Number.parseFloat(product?.oldPrice)*cartProduct.quantity).toFixed(2)}</Text>}
                     </Text>
                     
                 </View>

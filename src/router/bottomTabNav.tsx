@@ -33,9 +33,10 @@ const BottomTabNavigator = () => {
             }}  />
           <Tab.Screen 
             component={MenuScreen} 
-            name="More"
+            name="Profile"
             options={{
-              tabBarIcon:(({color}) => <Entypo name="menu" size={30} color={color}/>)
+              headerStyle: {backgroundColor: '#22e3dd'},
+              tabBarIcon:(({color}) => <Entypo name="user" size={30} color={color}/>)
             }}  />
         </Tab.Navigator> 
   )

@@ -11,6 +11,7 @@ const style = StyleSheet.create({
         marginVertical: 5,
     },
     image: {
+        margin: 5,
         flex: 2,
         height: 150,
         resizeMode: 'contain',
@@ -28,6 +29,8 @@ const style = StyleSheet.create({
         textDecorationLine: 'line-through'
     },
     rightContainer: {
+        alignContent: 'center',
+        justifyContent: 'center',
         padding: 10,
         flex: 3,
     },

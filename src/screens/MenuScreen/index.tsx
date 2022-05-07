@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
@@ -24,18 +24,25 @@ const MenuScreen = () => {
 
 
     return (
-        <View>
-                <Text style={style.title}>Username: {user}</Text>
-                <Text style={style.title}>Email: {email}</Text>
-                <Pressable  style={style.logOutButton}
-                            onPress={() => {
-                                Auth.signOut();
-                            }}>
-                    <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
-                        Logout
-                    </Text>
-                </Pressable>
-        </View>
+            <View>
+                <ImageBackground    blurRadius={3}
+                                    source={require('../../../assets/creare-sito-ecommerce.jpg')} 
+                                    style={{    width: '100%',
+                                                height: '100%',
+                                                justifyContent: 'center',
+                                            }}>
+                    <Text style={style.title}>Username: {user}</Text>
+                    <Text style={style.title}>Email: {email}</Text>
+                    <Pressable  style={[style.logOutButton, {borderWidth: 1, borderColor: 'darkorange'}]}
+                                onPress={() => {
+                                    Auth.signOut();
+                                }}>
+                        <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
+                            Logout
+                        </Text>
+                    </Pressable>
+                </ImageBackground>
+            </View>
         )
 }
 
