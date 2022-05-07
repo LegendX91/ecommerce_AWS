@@ -8,7 +8,7 @@ interface quantityProps {
 
 const QuantitySelector = ({quantity, setQuantity} : quantityProps) => {
     const onMinus = () => {
-        setQuantity(Math.max(0, quantity - 1));
+        setQuantity(Math.max(1, quantity - 1));
     }
 
     const onPlus = () => {
@@ -36,16 +36,17 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        borderWidth: 1,
-        borderColor: '#e3e3e3',
         width: 130
     },
     button: {
         width: 35,
-        height: 35,
+        height: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#d1d1d1',
+        backgroundColor: 'orange',
+        borderWidth: 1,
+        borderColor: 'darkorange',
+        borderRadius: 10
     },
     buttonText: {
         fontSize: 18

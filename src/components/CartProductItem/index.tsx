@@ -1,5 +1,5 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, Image, Pressable } from 'react-native'
+import React from 'react'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import style from './style';
 import QuantitySelector from '../QuantitySelector';
@@ -28,6 +28,11 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
             })
         )
     }
+
+    const deleteItem = async () => {
+        await DataStore.delete(CartProduct, cartProduct.id);
+    }
+
     
     //if(cartProduct.quantity == 0){
     //   return <View></View>
@@ -58,7 +63,19 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                     
                 </View>
             </View>
-            <QuantitySelector quantity={cartProduct.quantity} setQuantity={updateQuantity} />
+            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+                <QuantitySelector quantity={cartProduct.quantity} setQuantity={updateQuantity} />
+                <Pressable  style={{    backgroundColor: 'orange', 
+                                        padding: 5,
+                                        borderColor: 'darkorange',
+                                        borderWidth: 1,
+                                        borderRadius: 5,
+                                        margin: 10
+                                    }}
+                            onPress={deleteItem}>
+                    <Text>Remove from Cart</Text>
+                </Pressable>
+            </View>
         </View>
   )
 }
