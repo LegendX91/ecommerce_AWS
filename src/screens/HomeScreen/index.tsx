@@ -1,5 +1,5 @@
 import { View, StyleSheet, FlatList } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, componentDidMount} from 'react';
 import ProductItem from '../../components/ProductItem';
 import { DataStore } from 'aws-amplify';
 import { Product } from '../../models';
@@ -30,7 +30,10 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
 
 const style = StyleSheet.create({
     page: {
-        padding: 10,
+        paddingBottom: 1,
+        paddingTop: 10,
+        paddingRight: 5,
+        paddingLeft: 5,
     }
 })
 
