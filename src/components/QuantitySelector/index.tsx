@@ -52,7 +52,9 @@ const style = StyleSheet.create({
         fontSize: 18
     },
     quantity: {
-        color: '#007eb9'
+        color: 'black',
+        fontSize: 17,
+        fontWeight: 'bold'
     }
 })
 

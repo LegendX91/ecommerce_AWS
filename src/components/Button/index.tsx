@@ -16,14 +16,15 @@ const Button = ({ text, onPress}: ButtonProps) => {
 
 const style = StyleSheet.create({
     root: {
-        backgroundColor: '#e47911',
+        backgroundColor: 'orange',
+        paddingHorizontal: 10,
         marginVertical: 10,
         height: 35,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 5,
+        borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#a15e1b',
+        borderColor: 'darkorange', 
         marginBottom: 15,
     },
     text: {

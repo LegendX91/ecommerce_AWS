@@ -31,7 +31,7 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
 const style = StyleSheet.create({
     page: {
         paddingBottom: 1,
-        paddingTop: 10,
+        paddingTop: 1,
         paddingRight: 5,
         paddingLeft: 5,
     }
