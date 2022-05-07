@@ -17,7 +17,7 @@ const Button = ({ text, onPress}: ButtonProps) => {
 const style = StyleSheet.create({
     root: {
         backgroundColor: 'orange',
-        paddingHorizontal: 10,
+        paddingHorizontal: 35,
         marginVertical: 10,
         height: 35,
         justifyContent: 'center',

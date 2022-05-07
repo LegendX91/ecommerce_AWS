@@ -73,28 +73,34 @@ const ProductScreen = () => {
 
                 <ImageCarousel images={product.images} />
                 
-                { typeof selectedOption !== 'undefined' && <Picker
-                    selectedValue={selectedOption}
-                    onValueChange={(itemValue) => setSelectedOption(itemValue)}
-                >
-                    {product.options.map(option => <Picker.Item label={option} value={option} />)}
-                </Picker>}
+                { 
+                    typeof selectedOption !== 'undefined' && <Picker
+                        style={{backgroundColor: '#f7f5f0'}}
+                        selectedValue={selectedOption}
+                        onValueChange={(itemValue) => setSelectedOption(itemValue)}
+                    >
+                        {product.options.map(option => <Picker.Item label={option} value={option} />)}
+                    </Picker>
+                }
+                
+                <View style={{flexDirection: 'row',justifyContent: 'space-around', alignItems: 'center', paddingHorizontal: 10}}>
+                    <View>
+                        <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
+                    </View>
 
-                <Text style={style.price}>Price: €{product.price.toFixed(2)}
+                    <Button text={"Add to Cart"} onPress={onAddToCart} ></Button>
+                </View>
+
+                
+
+                <Text style={style.price}>Price: €{(Number.parseFloat(product.price) * quantity).toFixed(2)}
                     { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
                 </Text>
 
                 <Text style={style.description}>
                     {product.description}
                 </Text>
-                <View style={{flexDirection: 'row',justifyContent: 'space-around', alignItems: 'center'}}>
-                    <View>
-                        <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
-                    </View>
-
-                    <Button text={"Add to Cart"} onPress={onAddToCart} ></Button>
-                    <Button text={"Buy Now!"} onPress={() => {console.warn("Bought!")}} ></Button>
-                </View>
+                
             </ScrollView>
     )
 }

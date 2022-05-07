@@ -6,6 +6,7 @@ const style = StyleSheet.create({
         backgroundColor: 'white',
     },
     price: {
+        textAlign: 'center',
         fontSize: 18,
         fontWeight: 'bold',
     },

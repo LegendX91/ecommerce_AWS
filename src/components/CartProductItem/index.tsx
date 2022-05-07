@@ -47,17 +47,12 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                             numberOfLines={3}>
                                 {product.title}
                     </Text>
-                    <View style={style.rating}>
-                        {[0,0,0,0,0].map((el, i) => 
-                            <FontAwesome    
-                                            key={`${product.id} - ${i}`}
-                                            style={style.star} 
-                                            name={i < Math.floor(product.avgRatings) ? "star" : 'star-o'} 
-                                            size={18} 
-                                            color={"#e47911"} />)}
-                        <Text style={{color:'grey', marginLeft: 10}}>{product.ratings}</Text>
-                    </View>
-                    <Text style={style.price}>from €{product.price.toFixed(2)}
+                    { cartItem.option ?
+                        <Text style={{fontSize: 14, fontStyle: 'italic', color: 'grey'}}>
+                            Option: {cartItem.option}
+                        </Text> : <View></View>
+                    }
+                    <Text style={style.price}>Total: € {(Number.parseFloat(product.price)*cartProduct.quantity).toFixed(2)}
                         { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
                     </Text>
                     
