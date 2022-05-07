@@ -37,17 +37,14 @@ const HomeStack = () => {
   const [searchValue, setSearchValue] = useState('');
 
   return(
-    <Stack.Navigator
-      screenOptions={{
-      header: () => <HeaderComponent 
+    <Stack.Navigator>
+      <Stack.Screen options={{header: () => <HeaderComponent 
                       searchValue={searchValue}
                       setSearchValue={setSearchValue}
-                    />
-      }}>
-      <Stack.Screen name="Home Screen">
+                    />}} name="Home Screen">
         {() => <HomeScreen searchValue={searchValue} />}
       </Stack.Screen>
-      <Stack.Screen component={ProductScreen} name="Product Details" />
+      <Stack.Screen options={{headerStyle: {backgroundColor: '#22e3dd'}}} component={ProductScreen} name="Product Details" />
     </Stack.Navigator>
   )
 }

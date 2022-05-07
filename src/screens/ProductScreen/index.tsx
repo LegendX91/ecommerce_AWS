@@ -80,7 +80,7 @@ const ProductScreen = () => {
                     {product.options.map(option => <Picker.Item label={option} value={option} />)}
                 </Picker>
 
-                <Text style={style.price}>from €{product.price.toFixed(2)}
+                <Text style={style.price}>Price: €{product.price.toFixed(2)}
                     { product.oldPrice && <Text style={style.oldPrice}>€{product.oldPrice.toFixed(2)}</Text>}
                 </Text>
 
