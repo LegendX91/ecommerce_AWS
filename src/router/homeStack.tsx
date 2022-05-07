@@ -16,15 +16,17 @@ interface headerProps {
 const HeaderComponent = ({searchValue, setSearchValue}: headerProps) => {
   return (
     <SafeAreaView style={{backgroundColor: '#22e3dd'}}>
-      <View style={{margin: 10, padding: 5, backgroundColor: 'white', flexDirection: 'row', alignItems: 'center'}}>
-        <Feather name="search" size={20} />
+      <View style={{margin: 10, padding: 5, backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', borderRadius: 5}}>
+        <Feather name="search" size={25} style={{marginLeft: 10}} />
         <TextInput  style={{
                       height: 40,
-                      marginLeft: 10.
+                      marginLeft: 15,
+                      fontSize: 17,
+                      fontStyle: 'italic'
                     }}
                     value={searchValue}
                     onChangeText={setSearchValue}
-                    placeholder='Search for something' />
+                    placeholder='Search...' />
       </View>
     </SafeAreaView>
   )

@@ -14,9 +14,11 @@ const style = StyleSheet.create({
         flex: 2,
         height: 150,
         resizeMode: 'contain',
+        margin: 5,
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
+        fontStyle: 'italic',
     },
     price: {
         fontSize: 18,
