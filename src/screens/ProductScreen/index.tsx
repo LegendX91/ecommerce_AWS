@@ -74,7 +74,7 @@ const ProductScreen = () => {
                 <ImageCarousel images={product.images} />
                 
                 { 
-                    typeof selectedOption !== 'undefined' && <Picker
+                    (typeof selectedOption !== 'undefined' && product.options?.length !== 1) && <Picker
                         style={{backgroundColor: '#f7f5f0'}}
                         selectedValue={selectedOption}
                         onValueChange={(itemValue) => setSelectedOption(itemValue)}
@@ -93,8 +93,8 @@ const ProductScreen = () => {
 
                 
 
-                <Text style={style.price}>Price: €{(Number.parseFloat(product.price) * quantity).toFixed(2)}
-                    { product.oldPrice && <Text style={style.oldPrice}>€{(Number.parseFloat(product?.oldPrice)*quantity).toFixed(2)}</Text>}
+                <Text style={style.price}>Price: €{(Number.parseFloat(product.price[product.options?.indexOf(selectedOption)]) * quantity).toFixed(2)}
+                    { product.oldPrice[product.options?.indexOf(selectedOption)] && <Text style={style.oldPrice}>€{(Number.parseFloat(product.oldPrice[product.options?.indexOf(selectedOption)])*quantity).toFixed(2)}</Text>}
                 </Text>
 
                 <Text style={style.description}>

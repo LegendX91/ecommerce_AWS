@@ -23,7 +23,17 @@ const MenuScreen = () => {
     const navigation = useNavigation();
 
     const callToLambda = async () => {
-        API.get('lambdaAPI', '/lambda', {}).then(response => console.warn(response));
+        const init = {
+            body: {
+                "key1":"hey"
+            },
+            headers: {
+
+            }
+        }
+        API.post('lambdaAPI', '/lambda', init).then(
+            response => console.warn(response)).catch(
+            e => console.warn(e));
     }
 
     return (

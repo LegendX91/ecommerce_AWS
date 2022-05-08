@@ -18,7 +18,7 @@ export const createProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
-      orders {
+      _orders {
         items {
           id
           quantity
@@ -58,7 +58,7 @@ export const updateProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
-      orders {
+      _orders {
         items {
           id
           quantity
@@ -98,7 +98,7 @@ export const deleteProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
-      orders {
+      _orders {
         items {
           id
           quantity
@@ -144,7 +144,7 @@ export const createCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }
@@ -184,7 +184,7 @@ export const updateCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }
@@ -224,7 +224,7 @@ export const deleteCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }

@@ -52,8 +52,8 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                             Option: {cartItem.option}
                         </Text> : <View></View>
                     }
-                    <Text style={style.price}>Total: € {(Number.parseFloat(product.price)*cartProduct.quantity).toFixed(2)}
-                        { product.oldPrice && <Text style={style.oldPrice}>€{(Number.parseFloat(product?.oldPrice)*cartProduct.quantity).toFixed(2)}</Text>}
+                    <Text style={style.price}>Total: € {(Number.parseFloat(product.price[product.options?.indexOf(cartProduct.option)])*cartProduct.quantity).toFixed(2)}
+                        { product.oldPrice[product.options?.indexOf(cartProduct.option)] && <Text style={style.oldPrice}>€{(Number.parseFloat(product.oldPrice[product.options?.indexOf(cartProduct.option)])*cartProduct.quantity).toFixed(2)}</Text>}
                     </Text>
                     
                 </View>

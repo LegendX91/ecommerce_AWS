@@ -15,12 +15,6 @@
     "categories": {
       "auth": {
         "ecommerceapp0465cd47": {}
-      },
-      "function": {
-        "lambdaTest": {
-          "deploymentBucketName": "amplify-ecommerceapp-dev-155717-deployment",
-          "s3Key": "amplify-builds/lambdaTest-426b374f4643316a5333-build.zip"
-        }
       }
     }
   }

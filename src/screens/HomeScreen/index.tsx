@@ -1,5 +1,5 @@
 import { View, StyleSheet, FlatList } from 'react-native';
-import React, {useState, useEffect, componentDidMount} from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductItem from '../../components/ProductItem';
 import { DataStore } from 'aws-amplify';
 import { Product } from '../../models';

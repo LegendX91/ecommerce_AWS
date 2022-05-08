@@ -11,8 +11,8 @@ export type CreateProductInput = {
   options?: Array< string > | null,
   avgRatings: number,
   ratings?: number | null,
-  price: number,
-  oldPrice?: number | null,
+  price?: Array< number > | null,
+  oldPrice?: Array< number | null > | null,
   _version?: number | null,
 };
 
@@ -105,9 +105,9 @@ export type Product = {
   options?: Array< string > | null,
   avgRatings: number,
   ratings?: number | null,
-  price: number,
-  oldPrice?: number | null,
-  orders?: ModelCartProductConnection | null,
+  price?: Array< number > | null,
+  oldPrice?: Array< number | null > | null,
+  _orders?: ModelCartProductConnection | null,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -146,8 +146,8 @@ export type UpdateProductInput = {
   options?: Array< string > | null,
   avgRatings?: number | null,
   ratings?: number | null,
-  price?: number | null,
-  oldPrice?: number | null,
+  price?: Array< number > | null,
+  oldPrice?: Array< number | null > | null,
   _version?: number | null,
 };
 
@@ -255,9 +255,9 @@ export type CreateProductMutation = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -299,9 +299,9 @@ export type UpdateProductMutation = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -343,9 +343,9 @@ export type DeleteProductMutation = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -394,9 +394,9 @@ export type CreateCartProductMutation = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -438,9 +438,9 @@ export type UpdateCartProductMutation = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -482,9 +482,9 @@ export type DeleteCartProductMutation = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -518,9 +518,9 @@ export type GetProductQuery = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -565,9 +565,9 @@ export type ListProductsQuery = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -603,9 +603,9 @@ export type SyncProductsQuery = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -643,9 +643,9 @@ export type GetCartProductQuery = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -690,8 +690,8 @@ export type ListCartProductsQuery = {
         options?: Array< string > | null,
         avgRatings: number,
         ratings?: number | null,
-        price: number,
-        oldPrice?: number | null,
+        price?: Array< number > | null,
+        oldPrice?: Array< number | null > | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -736,8 +736,8 @@ export type SyncCartProductsQuery = {
         options?: Array< string > | null,
         avgRatings: number,
         ratings?: number | null,
-        price: number,
-        oldPrice?: number | null,
+        price?: Array< number > | null,
+        oldPrice?: Array< number | null > | null,
         createdAt: string,
         updatedAt: string,
         _version: number,
@@ -766,9 +766,9 @@ export type OnCreateProductSubscription = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -805,9 +805,9 @@ export type OnUpdateProductSubscription = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -844,9 +844,9 @@ export type OnDeleteProductSubscription = {
     options?: Array< string > | null,
     avgRatings: number,
     ratings?: number | null,
-    price: number,
-    oldPrice?: number | null,
-    orders?:  {
+    price?: Array< number > | null,
+    oldPrice?: Array< number | null > | null,
+    _orders?:  {
       __typename: "ModelCartProductConnection",
       items:  Array< {
         __typename: "CartProduct",
@@ -890,9 +890,9 @@ export type OnCreateCartProductSubscription = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -929,9 +929,9 @@ export type OnUpdateCartProductSubscription = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,
@@ -968,9 +968,9 @@ export type OnDeleteCartProductSubscription = {
       options?: Array< string > | null,
       avgRatings: number,
       ratings?: number | null,
-      price: number,
-      oldPrice?: number | null,
-      orders?:  {
+      price?: Array< number > | null,
+      oldPrice?: Array< number | null > | null,
+      _orders?:  {
         __typename: "ModelCartProductConnection",
         nextToken?: string | null,
         startedAt?: number | null,

@@ -15,7 +15,7 @@ export const getProduct = /* GraphQL */ `
       ratings
       price
       oldPrice
-      orders {
+      _orders {
         items {
           id
           quantity
@@ -57,7 +57,7 @@ export const listProducts = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }
@@ -96,7 +96,7 @@ export const syncProducts = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }
@@ -130,7 +130,7 @@ export const getCartProduct = /* GraphQL */ `
         ratings
         price
         oldPrice
-        orders {
+        _orders {
           nextToken
           startedAt
         }

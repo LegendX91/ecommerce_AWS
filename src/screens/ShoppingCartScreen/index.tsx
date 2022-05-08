@@ -67,7 +67,7 @@ const ShoppingCartScreen = () => {
 
     const totalPrice = cartProducts.reduce(
         (sumPrice, product) => 
-            sumPrice + (product?.product?.price || 0) * product.quantity,
+            sumPrice + (product?.product?.price[product?.product?.options.indexOf(product?.option)] || 0) * product.quantity,
             0
     );
 

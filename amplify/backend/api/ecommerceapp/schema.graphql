@@ -13,10 +13,10 @@ type Product @model @auth(rules: [{ allow: public}]){
   avgRatings: Float!
   ratings: Int
 
-  price: Float!
-  oldPrice: Float
+  price: [Float!]
+  oldPrice: [Float]
 
-  orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
+  _orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
 type CartProduct @model {
