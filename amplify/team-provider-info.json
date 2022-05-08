@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-ecommerceapp-dev-155717-unauthRole",
       "StackName": "amplify-ecommerceapp-dev-155717",
       "StackId": "arn:aws:cloudformation:eu-west-2:073941644708:stack/amplify-ecommerceapp-dev-155717/5d3ee750-cc7b-11ec-982d-0a2f1a7e92c0",
-      "AmplifyAppId": "d2cw2wqaj8k5lt"
+      "AmplifyAppId": "d2cw2wqaj8k5lt",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-ecommerceapp-dev-155717-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "ecommerceapp0465cd47": {}
+      },
+      "function": {
+        "lambdaTest": {
+          "deploymentBucketName": "amplify-ecommerceapp-dev-155717-deployment",
+          "s3Key": "amplify-builds/lambdaTest-426b374f4643316a5333-build.zip"
+        }
       }
     }
   }
