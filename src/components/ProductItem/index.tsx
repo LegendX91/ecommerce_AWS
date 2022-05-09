@@ -11,8 +11,8 @@ interface ProductItemProps {
         image: string,
         avgRatings: number,
         ratings: number,
-        price: [number],
-        oldPrice?: [number],
+        currentPrice: [number],
+        defaultPrice?: [number],
     }
 }
 
@@ -45,8 +45,8 @@ const ProductItem = (props: ProductItemProps) => {
                                         color={"#e47911"} />)}
                     <Text style={{color:'grey', marginLeft: 10}}>{item.ratings}</Text>
                 </View>
-                <Text style={style.price}>from €{item.price[0].toFixed(2)}
-                    { item.oldPrice[0] && <Text style={style.oldPrice}>€{item.oldPrice[0].toFixed(2)}</Text>}
+                <Text style={style.price}>from €{item.currentPrice[0].toFixed(2)}
+                    { item.defaultPrice[0] && <Text style={style.oldPrice}>€{item.defaultPrice[0].toFixed(2)}</Text>}
                 </Text>
             </View>
         </Pressable>

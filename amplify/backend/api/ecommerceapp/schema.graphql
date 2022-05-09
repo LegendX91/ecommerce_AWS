@@ -13,10 +13,13 @@ type Product @model @auth(rules: [{ allow: public}]){
   avgRatings: Float!
   ratings: Int
 
-  price: [Float!]
-  oldPrice: [Float]
+  currentPrice: [Float!]!
+  defaultPrice: [Float!]!
 
-  _orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
+  tags: [String]
+  availability: [String!]!
+
+  orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
 type CartProduct @model {

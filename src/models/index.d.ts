@@ -21,9 +21,11 @@ export declare class Product {
   readonly options?: string[] | null;
   readonly avgRatings: number;
   readonly ratings?: number | null;
-  readonly price?: number[] | null;
-  readonly oldPrice?: (number | null)[] | null;
-  readonly _orders?: (CartProduct | null)[] | null;
+  readonly currentPrice: number[];
+  readonly defaultPrice: number[];
+  readonly tags?: (string | null)[] | null;
+  readonly availability: string[];
+  readonly orders?: (CartProduct | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Product, ProductMetaData>);

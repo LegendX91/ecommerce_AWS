@@ -67,7 +67,7 @@ const ShoppingCartScreen = () => {
 
     const totalPrice = cartProducts.reduce(
         (sumPrice, product) => 
-            sumPrice + (product?.product?.price[product?.product?.options.indexOf(product?.option)] || 0) * product.quantity,
+            sumPrice + (product?.product?.currentPrice[product?.product?.options.indexOf(product?.option)] || 0) * product.quantity,
             0
     );
 
@@ -76,7 +76,7 @@ const ShoppingCartScreen = () => {
     else
         return (
             <View style={style.page}>
-                <View>
+                <View style={{borderBottomWidth: 1, borderColor: 'lightgrey'}}>
                     <Text style={{fontSize: 18}}>Subtotal ({cartProducts.length} items): 
                         <Text style={{color: '#e47911', fontWeight: 'bold'}}>€{totalPrice.toFixed(2)}</Text>
                     </Text>
@@ -97,7 +97,7 @@ const ShoppingCartScreen = () => {
 
 const style = StyleSheet.create({
     page: {
-        marginBottom: 100,
+        marginBottom: 75,
         padding: 10,
     }
 })

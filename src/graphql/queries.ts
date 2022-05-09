@@ -2,115 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getProduct = /* GraphQL */ `
-  query GetProduct($id: ID!) {
-    getProduct(id: $id) {
-      id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      price
-      oldPrice
-      _orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listProducts = /* GraphQL */ `
-  query ListProducts(
-    $filter: ModelProductFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        description
-        image
-        images
-        options
-        avgRatings
-        ratings
-        price
-        oldPrice
-        _orders {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncProducts = /* GraphQL */ `
-  query SyncProducts(
-    $filter: ModelProductFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncProducts(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        description
-        image
-        images
-        options
-        avgRatings
-        ratings
-        price
-        oldPrice
-        _orders {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getCartProduct = /* GraphQL */ `
   query GetCartProduct($id: ID!) {
     getCartProduct(id: $id) {
@@ -128,9 +19,11 @@ export const getCartProduct = /* GraphQL */ `
         options
         avgRatings
         ratings
-        price
-        oldPrice
-        _orders {
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
           nextToken
           startedAt
         }
@@ -170,8 +63,10 @@ export const listCartProducts = /* GraphQL */ `
           options
           avgRatings
           ratings
-          price
-          oldPrice
+          currentPrice
+          defaultPrice
+          tags
+          availability
           createdAt
           updatedAt
           _version
@@ -217,13 +112,130 @@ export const syncCartProducts = /* GraphQL */ `
           options
           avgRatings
           ratings
-          price
-          oldPrice
+          currentPrice
+          defaultPrice
+          tags
+          availability
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getProduct = /* GraphQL */ `
+  query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        description
+        image
+        images
+        options
+        avgRatings
+        ratings
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncProducts = /* GraphQL */ `
+  query SyncProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncProducts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        title
+        description
+        image
+        images
+        options
+        avgRatings
+        ratings
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt

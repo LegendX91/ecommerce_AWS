@@ -9,7 +9,7 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
     const [products, setProducts] = useState<Product[]>([]);
 
     const fetchProducts = async() => {
-        const results = await DataStore.query(Product, (p => p.title("contains", searchValue)) );
+        let results = await DataStore.query(Product, (p => p.title("contains", (searchValue))) );
         setProducts(results);
     };
 

@@ -2,117 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateProduct = /* GraphQL */ `
-  subscription OnCreateProduct {
-    onCreateProduct {
-      id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      price
-      oldPrice
-      _orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateProduct = /* GraphQL */ `
-  subscription OnUpdateProduct {
-    onUpdateProduct {
-      id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      price
-      oldPrice
-      _orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteProduct = /* GraphQL */ `
-  subscription OnDeleteProduct {
-    onDeleteProduct {
-      id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      price
-      oldPrice
-      _orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const onCreateCartProduct = /* GraphQL */ `
   subscription OnCreateCartProduct {
     onCreateCartProduct {
@@ -130,9 +19,11 @@ export const onCreateCartProduct = /* GraphQL */ `
         options
         avgRatings
         ratings
-        price
-        oldPrice
-        _orders {
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
           nextToken
           startedAt
         }
@@ -167,9 +58,11 @@ export const onUpdateCartProduct = /* GraphQL */ `
         options
         avgRatings
         ratings
-        price
-        oldPrice
-        _orders {
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
           nextToken
           startedAt
         }
@@ -204,9 +97,11 @@ export const onDeleteCartProduct = /* GraphQL */ `
         options
         avgRatings
         ratings
-        price
-        oldPrice
-        _orders {
+        currentPrice
+        defaultPrice
+        tags
+        availability
+        orders {
           nextToken
           startedAt
         }
@@ -215,6 +110,123 @@ export const onDeleteCartProduct = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateProduct = /* GraphQL */ `
+  subscription OnCreateProduct {
+    onCreateProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateProduct = /* GraphQL */ `
+  subscription OnUpdateProduct {
+    onUpdateProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteProduct = /* GraphQL */ `
+  subscription OnDeleteProduct {
+    onDeleteProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt

@@ -93,8 +93,9 @@ const ProductScreen = () => {
 
                 
 
-                <Text style={style.price}>Price: €{(Number.parseFloat(product.price[product.options?.indexOf(selectedOption)]) * quantity).toFixed(2)}
-                    { product.oldPrice[product.options?.indexOf(selectedOption)] && <Text style={style.oldPrice}>€{(Number.parseFloat(product.oldPrice[product.options?.indexOf(selectedOption)])*quantity).toFixed(2)}</Text>}
+                <Text style={style.price}>Price: €{(Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)]) * quantity).toFixed(2)}
+                    { Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)]) !== (Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)])) 
+                        && <Text style={style.oldPrice}>€{(Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)])*quantity).toFixed(2)}</Text>}
                 </Text>
 
                 <Text style={style.description}>
