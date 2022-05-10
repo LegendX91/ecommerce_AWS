@@ -4,7 +4,7 @@ import ProductItem from '../../components/ProductItem';
 import { DataStore } from 'aws-amplify';
 import { Product } from '../../models';
 
-const HomeScreen = ({searchValue}: {searchValue: string}) => {
+const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSearchValue: (searchValue: string) => void}) => {
     
     const [products, setProducts] = useState<Product[]>([]);
 
@@ -26,7 +26,7 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
         <View style={style.page}>
             <FlatList
                 data={products}
-                renderItem={({item}) => <ProductItem key={item.id} item={item} />}
+                renderItem={({item}) => <ProductItem key={item.id} item={item} setSearchValue={setSearchValue}/>}
                 showsVerticalScrollIndicator={false}
             />
         </View>

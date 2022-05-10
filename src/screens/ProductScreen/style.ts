@@ -22,6 +22,7 @@ const style = StyleSheet.create({
     description: {
         marginVertical: 10,
         lineHeight: 20,
+        textAlign: 'justify',
     }
 });
 

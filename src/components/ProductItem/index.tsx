@@ -14,7 +14,9 @@ interface ProductItemProps {
         currentPrice: [number],
         defaultPrice?: [number],
         tags: [string]
-    }
+        availability: [string]
+    },
+    setSearchValue: (searchValue: string) => void
 }
 
 const ProductItem = (props: ProductItemProps) => {
@@ -49,15 +51,20 @@ const ProductItem = (props: ProductItemProps) => {
                                             color={"#e47911"} />)}
                         <Text style={{color:'grey', marginLeft: 10}}>{item.ratings}</Text>
                     </View>
-                    <Text style={style.price}>from €{item.currentPrice[0].toFixed(2)}
-                        { item.defaultPrice[0] && <Text style={style.oldPrice}>€{item.defaultPrice[0].toFixed(2)}</Text>}
+                    <Text style={style.price}><Text style={{fontSize: 14}}>from</Text> €{item.currentPrice[0].toFixed(2)}
+                        { item.defaultPrice[0] && <Text style={style.oldPrice}> €{item.defaultPrice[0].toFixed(2)}</Text>}
                     </Text>
                 </Pressable>
                 { item.tags &&
                     <View style={{width: '100%', justifyContent: 'space-around', display: 'flex', paddingTop: 5}}> 
                         <FlatList 
                             data={item.tags}
-                            renderItem={({item}) => <Text style={style.tags}>{item}</Text>}
+                            renderItem={({item}) => 
+                                <Pressable
+                                   onPress={() => props.setSearchValue(item)}
+                                >
+                                    <Text style={style.tags}>{item}</Text>
+                                </Pressable>}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             style={{}}
