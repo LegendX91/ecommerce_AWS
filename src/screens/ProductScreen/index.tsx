@@ -62,6 +62,18 @@ const ProductScreen = () => {
         navigation.navigate("Shopping Cart");
     }
 
+    function discountCondition() {
+        return Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)]) !== (Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)]));
+    }
+
+    function defaultPrice() {
+        return Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)]);
+    }
+
+    function currentPrice() {
+        return Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)]);
+    }
+
     // Activity Indicator se in fetching da DataStore
     if (!product){
         // in fetching
@@ -79,7 +91,7 @@ const ProductScreen = () => {
                         selectedValue={selectedOption}
                         onValueChange={(itemValue) => setSelectedOption(itemValue)}
                     >
-                        {product.options.map(option => <Picker.Item label={option} value={option} />)}
+                        {product.options.map(option => <Picker.Item key={product.options?.indexOf(option)} label={option} value={option} />)}
                     </Picker>
                 }
                 
@@ -93,10 +105,20 @@ const ProductScreen = () => {
 
                 
 
-                <Text style={style.price}>Price: €{(Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)]) * quantity).toFixed(2)}
-                    { Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)]) !== (Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)])) 
-                        && <Text style={style.oldPrice}>€{(Number.parseFloat(product.defaultPrice[product.options?.indexOf(selectedOption)])*quantity).toFixed(2)}</Text>}
+                <Text style={style.price}>Price: €{(currentPrice() * quantity).toFixed(2)}
+                    { discountCondition() 
+                        && 
+                            <Text style={style.oldPrice}>
+                                €{(defaultPrice()*quantity).toFixed(2)}
+                            </Text>
+                    }
                 </Text>
+                { discountCondition() 
+                        && 
+                            <Text style={{fontSize: 20,color: 'red', fontStyle:'italic', fontWeight:'normal', textAlign: 'center'}}>
+                                Save {(100-(100 * currentPrice()) / defaultPrice()).toFixed(2)}%
+                            </Text>
+                }
 
                 <Text style={style.description}>
                     {product.description}

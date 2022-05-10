@@ -13,7 +13,7 @@ const style = StyleSheet.create({
     oldPrice: {
         fontSize: 12,
         fontWeight: 'normal',
-        textDecorationLine: 'line-through'
+        textDecorationLine: 'line-through',
     },
     title: {
         fontSize: 18,

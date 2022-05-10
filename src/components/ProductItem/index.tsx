@@ -67,7 +67,6 @@ const ProductItem = (props: ProductItemProps) => {
                                 </Pressable>}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
-                            style={{}}
                         />
                     </View>
                 }
