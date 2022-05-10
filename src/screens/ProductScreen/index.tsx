@@ -124,7 +124,11 @@ const ProductScreen = () => {
                             </Text>
                 }
 
-                <Text style={{textAlign: 'center', color: ((String)(getAvailability()).includes('week' || 'month') ? 'darkorange' : 'green'), fontWeight: 'bold'}}>
+                <Text style={{  textAlign: 'center', 
+                                color: ((String)(getAvailability()).includes('week') ? 'darkorange' : (
+                                            (String)(getAvailability()).includes('month') ? 'red' : 'green'
+                                        )), 
+                                fontWeight: 'bold'}}>
                     Shipping in {getAvailability()}
                 </Text>
 
