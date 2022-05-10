@@ -46,6 +46,13 @@ const style = StyleSheet.create({
     star: {
         margin: 2,
     },
+    tags: {
+        color: 'orange', 
+        borderWidth: 1, borderRadius: 20, borderColor: 'darkorange',
+        paddingLeft: 7, paddingRight: 5,
+        fontWeight: 'bold', 
+        margin: 5, 
+    }
 })
 
 export default style; 
