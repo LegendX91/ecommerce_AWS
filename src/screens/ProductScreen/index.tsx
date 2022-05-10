@@ -37,7 +37,7 @@ const ProductScreen = () => {
 
     useEffect(() => {
         // controllo opzioni al variare prodotto
-        console.log('updated');
+        console.log("Updated");
         if (product?.options){
             setSelectedOption(product.options[0]);
         }

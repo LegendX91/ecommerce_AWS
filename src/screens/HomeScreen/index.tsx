@@ -9,11 +9,16 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
     const [products, setProducts] = useState<Product[]>([]);
 
     const fetchProducts = async() => {
-        let results = await DataStore.query(Product, (p => p.title("contains", (searchValue))) );
+        let results = await DataStore.query(Product, (
+            p => p.or(
+                p => p.title("contains", (searchValue)).title("contains", searchValue.toUpperCase()).title("contains", searchValue.toLowerCase()
+                ).tags("contains", (searchValue)).tags("contains", (searchValue.toUpperCase())).tags("contains", (searchValue.toLowerCase())))
+            ));
         setProducts(results);
     };
 
     useEffect(() => {
+        console.log("fetching");
         fetchProducts();
     }, [searchValue])
 
@@ -21,7 +26,7 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
         <View style={style.page}>
             <FlatList
                 data={products}
-                renderItem={({item}) => <ProductItem item={item} />}
+                renderItem={({item}) => <ProductItem key={item.id} item={item} />}
                 showsVerticalScrollIndicator={false}
             />
         </View>
