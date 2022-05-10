@@ -46,7 +46,6 @@ const ShoppingCartScreen = () => {
       }, [cartProducts]);
     
     useEffect(() => {
-        console.log("fetching")
         const subscription = DataStore.observe(CartProduct).subscribe(msg =>
             fetchCartProducts(),
         );
@@ -65,7 +64,7 @@ const ShoppingCartScreen = () => {
 
     return (
         <View style={style.page}>
-            {console.log("Updating...")}
+            {console.log("Updating Cart Screen...")}
             <View style={{borderBottomWidth: 1, borderColor: 'lightgrey'}}>
                 <Text style={{fontSize: 18}}>Subtotal ({cartProducts.length} items): 
                     <Text style={{color: '#e47911', fontWeight: 'bold'}}>€{totalPrice.toFixed(2)}</Text>

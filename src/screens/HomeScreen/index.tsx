@@ -18,12 +18,19 @@ const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSear
     };
 
     useEffect(() => {
-        console.log("fetching");
         fetchProducts();
     }, [searchValue])
 
+    useEffect(() => {
+        const subscription = DataStore.observe(Product).subscribe(msg =>
+            fetchProducts(),
+        );
+        return subscription.unsubscribe;
+    }, []);
+
     return (
         <View style={style.page}>
+            {console.log("Updating Home Screen...")}
             <FlatList
                 data={products}
                 renderItem={({item}) => <ProductItem key={item.id} item={item} setSearchValue={setSearchValue}/>}

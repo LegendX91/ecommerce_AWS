@@ -37,7 +37,6 @@ const ProductScreen = () => {
 
     useEffect(() => {
         // controllo opzioni al variare prodotto
-        console.log("Updated");
         if (product?.options){
             setSelectedOption(product.options[0]);
         }
@@ -74,6 +73,10 @@ const ProductScreen = () => {
         return Number.parseFloat(product.currentPrice[product.options?.indexOf(selectedOption)]);
     }
 
+    function getAvailability() {
+        return product.availability[product.options?.indexOf(selectedOption)]
+    }
+
     // Activity Indicator se in fetching da DataStore
     if (!product){
         // in fetching
@@ -81,6 +84,7 @@ const ProductScreen = () => {
     }else{
         return (
             <ScrollView style={style.root}>
+                {console.log("Updating Product Screen...")}
                 <Text style={style.title}>{product.title}</Text>
 
                 <ImageCarousel images={product.images} />
@@ -119,6 +123,10 @@ const ProductScreen = () => {
                                 Save {(100-(100 * currentPrice()) / defaultPrice()).toFixed(2)}%
                             </Text>
                 }
+
+                <Text style={{textAlign: 'center', color: ((String)(getAvailability()).includes('week' || 'month') ? 'darkorange' : 'green'), fontWeight: 'bold'}}>
+                    Shipping in {getAvailability()}
+                </Text>
 
                 <Text style={style.description}>
                     {product.description}
