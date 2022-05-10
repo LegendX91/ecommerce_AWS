@@ -15,51 +15,43 @@ const ShoppingCartScreen = () => {
 
     const navigation = useNavigation();
 
-    const fetchContent = async () => {
-        setLoading(true);
-        const result = await DataStore.query(CartProduct);
-        setCartProducts(result);
-    }
-
+    const fetchCartProducts = async () => {
+        const userData = await Auth.currentAuthenticatedUser();
+        DataStore.query(CartProduct, cp =>
+            cp.userSub('eq', userData.attributes.sub),
+        ).then(setCartProducts);
+    };
+    
     useEffect(() => {
-        const fetchCartProducts = async() => {
-            const userData = await Auth.currentAuthenticatedUser();
-            // cp => cp.userSub come predicato
-            const result= await DataStore.query(CartProduct, cp => cp.userSub('eq', userData.attributes.sub));
-            setCartProducts(result);
-        }
         fetchCartProducts();
-    }, [cartProducts])
-
-    useEffect(() => {
-        fetchContent();
     }, []);
-
+    
     useEffect(() => {
-        if (cartProducts.filter(cp => !cp.product).length === 0){
-            setLoading(false);
+        if (cartProducts.filter(cp => !cp.product).length === 0) {
             return;
         }
-
-        // trovo in fetch TUTTI i prodotti nel cart
         const fetchProducts = async () => {
-            const products = await Promise.all(
-                cartProducts.map(cartProduct => 
-                    DataStore.query(Product, cartProduct.productID)    
-                )
-            )
-
-        // assegno i prodotti in cartItem
-            setCartProducts(currentCartProducts => 
-                cartProducts.map(cartProduct => ({
+            const products = await Promise.all(cartProducts.map(
+                cartProduct =>  DataStore.query(Product, cartProduct.productID),
+                ),
+            );
+            setCartProducts(currentCartProducts =>
+                currentCartProducts.map(cartProduct => ({
                     ...cartProduct,
                     product: products.find(p => p.id === cartProduct.productID),
-                })
-            ))
-        }
-
+                })),
+            );
+        };
         fetchProducts();
-    }, [cartProducts]);
+      }, [cartProducts]);
+    
+    useEffect(() => {
+        console.log("fetching")
+        const subscription = DataStore.observe(CartProduct).subscribe(msg =>
+            fetchCartProducts(),
+        );
+        return subscription.unsubscribe;
+    }, []);
     
     const onCheckout = () => {
         navigation.navigate("Address Details");
@@ -71,28 +63,26 @@ const ShoppingCartScreen = () => {
             0
     );
 
-    if(loading)
-        return <ActivityIndicator />
-    else
-        return (
-            <View style={style.page}>
-                <View style={{borderBottomWidth: 1, borderColor: 'lightgrey'}}>
-                    <Text style={{fontSize: 18}}>Subtotal ({cartProducts.length} items): 
-                        <Text style={{color: '#e47911', fontWeight: 'bold'}}>€{totalPrice.toFixed(2)}</Text>
-                    </Text>
-                    <Button text="Proceed to CheckOut"
-                            onPress={onCheckout}
-                    />
-                </View>
-                <FlatList
-                    data={cartProducts}
-                    renderItem={({item}) => (
-                        <CartProductItem cartItem={item} />
-                    )}
-                    showsVerticalScrollIndicator={false}
+    return (
+        <View style={style.page}>
+            {console.log("Updating...")}
+            <View style={{borderBottomWidth: 1, borderColor: 'lightgrey'}}>
+                <Text style={{fontSize: 18}}>Subtotal ({cartProducts.length} items): 
+                    <Text style={{color: '#e47911', fontWeight: 'bold'}}>€{totalPrice.toFixed(2)}</Text>
+                </Text>
+                <Button text="Proceed to CheckOut"
+                        onPress={onCheckout}
                 />
-            </View> 
-            )
+            </View>
+            <FlatList
+                data={cartProducts}
+                renderItem={({item}) => (
+                    <CartProductItem cartItem={item} />
+                )}
+                showsVerticalScrollIndicator={false}
+            />
+        </View> 
+    )
 }
 
 const style = StyleSheet.create({
