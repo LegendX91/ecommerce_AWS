@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/ecommerce": {
+      "name": "/ecommerce",
+      "lambdaFunction": "myLambda",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

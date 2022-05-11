@@ -1,58 +1,25 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-# input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
-type Product @model @auth(rules: [{ allow: public}]){
+type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
   title: String!
   description: String
   image: String!
   images: [String!]!
   options: [String!]
-
   avgRatings: Float!
   ratings: Int
-
   currentPrice: [Float!]!
   defaultPrice: [Float!]!
-
   tags: [String]
   availability: [String!]!
-
   orders: [CartProduct] @hasMany(indexName: "byProduct", fields: ["id"])
 }
 
-type CartProduct @model {
+type CartProduct @model @auth(rules: [{allow: public}]) {
   id: ID!
   quantity: Int!
   option: String
-  userSub: String! # utente collegato all'ordine nel cart
-
+  userSub: String!
   productID: ID! @index(name: "byProduct")
-  product: Product @belongsTo(fields:["productID"]) # relazione per prodotto da ID
+  product: Product @belongsTo(fields: ["productID"])
 }
-
-# WIP
-# type Order @model {
-#  id: ID!
-#  userSub: String! # da AWS Cognito
-# }
-
-#type Blog @model {
-#  id: ID!
-#  name: String!
-#  posts: [Post] @hasMany
-# }
-
-# type Post @model {
-#  id: ID!
-#  title: String!
-#  blog: Blog @belongsTo
-#  comments: [Comment] @hasMany
-# }
-
-# type Comment @model {
-#  id: ID!
-#  post: Post @belongsTo
-#  content: String!
-# }
+ 

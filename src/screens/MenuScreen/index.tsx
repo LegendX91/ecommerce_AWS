@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
-import { Auth, API } from 'aws-amplify';
+import { Amplify, Auth, API } from 'aws-amplify';
 import { useNavigation } from '@react-navigation/native';
 
 const MenuScreen = () => {
@@ -22,18 +22,11 @@ const MenuScreen = () => {
 
     const navigation = useNavigation();
 
-    const callToLambda = async () => {
-        const init = {
-            body: {
-                "key1":"hey"
-            },
-            headers: {
-
-            }
-        }
-        API.post('lambdaAPI', '/lambda', init).then(
-            response => console.warn(response)).catch(
-            e => console.warn(e));
+    function getItems() {
+        API.get('myAPI', '/ecommerce', {}).then((response) => {
+            console.log(response);
+        });
+        
     }
 
     return (
@@ -56,7 +49,7 @@ const MenuScreen = () => {
                     </Pressable>
                     <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, borderColor: 'darkorange'}]}
                                 onPress={() => {
-                                    callToLambda();
+                                    getItems();
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
                             Lambda!
