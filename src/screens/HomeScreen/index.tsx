@@ -1,7 +1,7 @@
 import { View, StyleSheet, FlatList } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ProductItem from '../../components/ProductItem';
-import { DataStore } from 'aws-amplify';
+import { DataStore, API } from 'aws-amplify';
 import { Product } from '../../models';
 
 const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSearchValue: (searchValue: string) => void}) => {
@@ -9,12 +9,9 @@ const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSear
     const [products, setProducts] = useState<Product[]>([]);
 
     const fetchProducts = async() => {
-        let results = await DataStore.query(Product, (
-            p => p.or(
-                p => p.title("contains", (searchValue)).title("contains", searchValue.toUpperCase()).title("contains", searchValue.toLowerCase()
-                ).tags("contains", (searchValue)).tags("contains", (searchValue.toUpperCase())).tags("contains", (searchValue.toLowerCase())))
-            ));
-        setProducts(results);
+        API.post('myAPI', '/ecommerce/search', {body: {"searchValue": searchValue}}).then((response) => {
+            setProducts(response.body.data.Items);
+        });
     };
 
     useEffect(() => {

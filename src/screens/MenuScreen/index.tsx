@@ -24,9 +24,9 @@ const MenuScreen = () => {
 
     const navigation = useNavigation();
 
-    function getItems() {
+    function helloFromLambda() {
         API.get('myAPI', '/ecommerce', {}).then((response) => {
-            console.log(response);
+            console.warn(response);
         });
         
     }
@@ -54,7 +54,7 @@ const MenuScreen = () => {
                     </Pressable>
                     <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, borderColor: 'darkorange'}]}
                                 onPress={() => {
-                                    getItems();
+                                    helloFromLambda();
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
                             Lambda!

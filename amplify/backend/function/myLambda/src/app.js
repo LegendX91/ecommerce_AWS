@@ -34,11 +34,10 @@ app.get('/ecommerce', function(req, res) {
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
   
     var params = {
-     TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
-     Key: {'id': '83194a24-8d55-4a5e-a19e-5854d1f5a93e'}
+      TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
     };
     
-    docClient.get(params, function(err, data) {
+    docClient.scan(params, function(err, data) {
     if (err) {
       console.warn("Error", err);
       res.json({error: err});
@@ -58,9 +57,29 @@ app.get('/ecommerce/*', function(req, res) {
 * Example post method *
 ****************************/
 
-app.post('/ecommerce', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
+app.post('/ecommerce/search', function(req, res) {// Add your code here
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    var params = {
+      TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      FilterExpression : 'contains(title, :searchValue) or contains(title, :searchValue_UC) or contains(title, :searchValue_LC) ' +
+      'or contains(tags, :searchValue) or contains(tags, :searchValue_UC) or contains(tags, :searchValue_LC)',
+      ExpressionAttributeValues : {
+        ':searchValue' : req.body.searchValue,
+        ':searchValue_UC' : req.body.searchValue.toUpperCase(),  
+        ':searchValue_LC' : req.body.searchValue.toLowerCase(),
+      },
+    };
+    
+    docClient.scan(params, function(err, data) {
+    if (err) {
+      console.warn("Error", err);
+      res.json({error: err});
+    } else {
+      console.warn("Success", data.Item);
+      res.json({body:{data}});
+    }
+  });
 });
 
 app.post('/ecommerce/*', function(req, res) {
