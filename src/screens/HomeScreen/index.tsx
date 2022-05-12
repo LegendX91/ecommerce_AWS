@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import ProductItem from '../../components/ProductItem';
 import { DataStore, API } from 'aws-amplify';
@@ -8,9 +8,17 @@ const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSear
     
     const [products, setProducts] = useState<Product[]>([]);
 
+    const [loading, setLoading] = useState(false);
+
     const fetchProducts = async() => {
+        setLoading(true);
         API.post('myAPI', '/ecommerce/search', {body: {"searchValue": searchValue}}).then((response) => {
             setProducts(response.body.data.Items);
+        }).then(() => setLoading(false)).catch((err) => {
+            // Reset if it fails
+            setProducts([]);
+            setLoading(false);
+            setSearchValue('');
         });
     };
 
@@ -28,11 +36,15 @@ const HomeScreen = ({searchValue, setSearchValue}: {searchValue: string, setSear
     return (
         <View style={style.page}>
             {console.log("Updating Home Screen...")}
-            <FlatList
-                data={products}
-                renderItem={({item}) => <ProductItem key={item.id} item={item} setSearchValue={setSearchValue}/>}
-                showsVerticalScrollIndicator={false}
-            />
+            {loading ? 
+                <ActivityIndicator size='large' style={{marginVertical: '75%'}}/> 
+                : // OR
+                <FlatList
+                    data={products}
+                    renderItem={({item}) => <ProductItem key={item.id} item={item} setSearchValue={setSearchValue}/>}
+                    showsVerticalScrollIndicator={false}
+                />
+            }
         </View>
         )
 }

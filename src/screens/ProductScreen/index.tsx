@@ -90,11 +90,12 @@ const ProductScreen = () => {
                 <ImageCarousel images={product.images} />
                 
                 { 
-                    (typeof selectedOption !== 'undefined' && product.options?.length !== 1) && <Picker
-                        style={{backgroundColor: '#f7f5f0'}}
-                        selectedValue={selectedOption}
-                        onValueChange={(itemValue) => setSelectedOption(itemValue)}
-                    >
+                    (typeof selectedOption !== 'undefined' && product.options?.length !== 1) && 
+                        <Picker
+                            style={{backgroundColor: '#f7f5f0'}}
+                            selectedValue={selectedOption}
+                            onValueChange={(itemValue) => setSelectedOption(itemValue)}
+                        >
                         {product.options.map(option => <Picker.Item key={product.options?.indexOf(option)} label={option} value={option} />)}
                     </Picker>
                 }

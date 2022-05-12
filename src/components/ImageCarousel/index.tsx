@@ -18,7 +18,7 @@ const ImageCarousel = ({images}: {images: string[]}) => {
             <FlatList
                 data={images}
                 renderItem={({item}) => (
-                    <Image  style={[style.image, {width: windowWidth - 40 }]} 
+                    <Image  key={images.indexOf(item)} style={[style.image, {width: windowWidth - 40 }]} 
                             source={{ uri: item }} />)}
                 horizontal
                 showsHorizontalScrollIndicator={false}
