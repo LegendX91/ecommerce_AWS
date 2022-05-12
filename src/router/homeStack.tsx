@@ -5,6 +5,7 @@ import ProductScreen from '../screens/ProductScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Dimensions, TextInput, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import SVGImg from '../assets/logo_app_long_left_white.svg';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,9 @@ interface headerProps {
 const HeaderComponent = ({searchValue, setSearchValue}: headerProps) => {
   return (
     <SafeAreaView style={{backgroundColor: '#22e3dd'}}>
+      <View style={{marginTop: 10, marginBottom: -5,}}>
+        <SVGImg width={200} height={50}/>
+      </View>
       <View style={{margin: 10, padding: 5, backgroundColor: 'white', flexDirection: 'row', alignItems: 'center', borderRadius: 5}}>
         <Feather name="search" size={25} style={{marginLeft: 10, flex: 0.5}} />
         <TextInput  style={{

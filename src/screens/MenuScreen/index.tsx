@@ -2,8 +2,10 @@ import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native
 import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
-import { Amplify, Auth, API } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 import { useNavigation } from '@react-navigation/native';
+
+import SVGImg from '../../assets/logo_app_short.svg';
 
 const MenuScreen = () => {
 
@@ -37,6 +39,9 @@ const MenuScreen = () => {
                                                 height: '100%',
                                                 justifyContent: 'center',
                                             }}>
+                    <View style={{alignItems: 'center'}}>
+                        <SVGImg width={200} height={200}/>
+                    </View>                            
                     <Text style={style.title}>Username: {user}</Text>
                     <Text style={style.title}>Email: {email}</Text>
                     <Pressable  style={[style.logOutButton, {borderWidth: 1, borderColor: 'darkorange'}]}
