@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator, Modal } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import style from './style';
@@ -18,6 +18,8 @@ const ProductScreen = () => {
 
     const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
     const [quantity, setQuantity] = useState(1);
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const route= useRoute(); //parametri
 
@@ -83,61 +85,87 @@ const ProductScreen = () => {
         return <ActivityIndicator />
     }else{
         return (
-            <ScrollView style={style.root}>
-                {console.log("Updating Product Screen...")}
-                <Text style={style.title}>{product.title}</Text>
+            <View>
+                <ScrollView style={style.root}>
+                    {console.log("Updating Product Screen...")}
+                    <Text style={style.title}>{product.title}</Text>
 
-                <ImageCarousel images={product.images} />
-                
-                { 
-                    (typeof selectedOption !== 'undefined' && product.options?.length !== 1) && 
-                        <Picker
-                            style={{backgroundColor: '#f7f5f0'}}
-                            selectedValue={selectedOption}
-                            onValueChange={(itemValue) => setSelectedOption(itemValue)}
-                        >
-                        {product.options.map(option => <Picker.Item key={product.options?.indexOf(option)} label={option} value={option} />)}
-                    </Picker>
-                }
-                
-                <View style={{flexDirection: 'row',justifyContent: 'space-around', alignItems: 'center', paddingHorizontal: 10}}>
-                    <View>
-                        <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
+                    <ImageCarousel images={product.images} />
+                    
+                    { 
+                        (typeof selectedOption !== 'undefined' && product.options?.length !== 1) && 
+                            <Picker
+                                style={{backgroundColor: '#f7f5f0'}}
+                                selectedValue={selectedOption}
+                                onValueChange={(itemValue) => setSelectedOption(itemValue)}
+                            >
+                            {product.options.map(option => <Picker.Item key={product.options?.indexOf(option)} label={option} value={option} />)}
+                        </Picker>
+                    }
+                    
+                    <View style={{flexDirection: 'row',justifyContent: 'space-around', alignItems: 'center', paddingHorizontal: 10}}>
+                        <View>
+                            <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
+                        </View>
+
+                        <Button text={"Add to Cart"} onPress={onAddToCart} ></Button>
                     </View>
 
-                    <Button text={"Add to Cart"} onPress={onAddToCart} ></Button>
-                </View>
+                    
 
-                
-
-                <Text style={style.price}>Price: €{(currentPrice() * quantity).toFixed(2)}
+                    <Text style={style.price}>Price: €{(currentPrice() * quantity).toFixed(2)}
+                        { discountCondition() 
+                            && 
+                                <Text style={style.oldPrice}>
+                                    €{(defaultPrice()*quantity).toFixed(2)}
+                                </Text>
+                        }
+                    </Text>
                     { discountCondition() 
-                        && 
-                            <Text style={style.oldPrice}>
-                                €{(defaultPrice()*quantity).toFixed(2)}
-                            </Text>
+                            && 
+                                <Text style={{fontSize: 20,color: 'red', fontStyle:'italic', fontWeight:'normal', textAlign: 'center'}}>
+                                    Save {(100-(100 * currentPrice()) / defaultPrice()).toFixed(2)}%
+                                </Text>
                     }
-                </Text>
-                { discountCondition() 
-                        && 
-                            <Text style={{fontSize: 20,color: 'red', fontStyle:'italic', fontWeight:'normal', textAlign: 'center'}}>
-                                Save {(100-(100 * currentPrice()) / defaultPrice()).toFixed(2)}%
+
+                    <Text style={{  textAlign: 'center', 
+                                    color: ((String)(getAvailability()).includes('week') ? 'darkorange' : (
+                                                (String)(getAvailability()).includes('month') ? 'red' : 'green'
+                                            )), 
+                                    fontWeight: 'bold'}}>
+                        Shipping in {getAvailability()}
+                    </Text>
+                    <View  style={{  borderWidth: 1,
+                                    marginTop: 10,
+                                    marginBottom: 20,
+                                    borderRadius: 15,
+                                    borderColor: 'lightgrey',
+                                    backgroundColor: '#f7f5f0',
+                                    }}>
+                            <Text style={style.description} numberOfLines={10} onPress={() => setModalVisible(true)}>
+                                {product.description}
                             </Text>
-                }
+                    </View>
 
-                <Text style={{  textAlign: 'center', 
-                                color: ((String)(getAvailability()).includes('week') ? 'darkorange' : (
-                                            (String)(getAvailability()).includes('month') ? 'red' : 'green'
-                                        )), 
-                                fontWeight: 'bold'}}>
-                    Shipping in {getAvailability()}
-                </Text>
-
-                <Text style={style.description}>
-                    {product.description}
-                </Text>
-                
-            </ScrollView>
+                    <Modal
+                        visible={modalVisible}
+                        onRequestClose={
+                            () => 
+                                setModalVisible(false)
+                        }
+                        animationType='fade'
+                        transparent={true}
+                    >
+                            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#f7f5f0', opacity: 0.85}}>
+                                <View style={{borderWidth: 1, margin: 10, borderRadius: 10, backgroundColor: 'white', borderColor: 'lightgrey'}}>
+                                    <Text style={{margin: 10}}>{product.description}</Text>
+                                </View>
+                                <Button text={"Go Back"} onPress={() => setModalVisible(false)} ></Button>
+                            </View>
+                    </Modal>
+                    
+                </ScrollView>
+            </View>
     )
 }
 }

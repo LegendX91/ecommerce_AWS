@@ -15,6 +15,9 @@ const BottomTabNavigator = () => {
               tabBarActiveTintColor: '#e47911',
               tabBarInactiveTintColor: '#ffbd7d',
               tabBarShowLabel:false,
+              tabBarLabelStyle:{
+                color: 'white'
+              }
             }}
         >
           <Tab.Screen 
@@ -35,6 +38,7 @@ const BottomTabNavigator = () => {
             component={MenuScreen} 
             name="Profile"
             options={{
+              headerTintColor: 'white',
               headerStyle: {backgroundColor: '#22e3dd'},
               tabBarIcon:(({color}) => <Entypo name="user" size={30} color={color}/>)
             }}  />

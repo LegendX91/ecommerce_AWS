@@ -50,7 +50,10 @@ const HomeStack = () => {
                     />}} name="Home Screen">
         {() => <HomeScreen searchValue={searchValue} setSearchValue={setSearchValue}/>}
       </Stack.Screen>
-      <Stack.Screen options={{headerStyle: {backgroundColor: '#22e3dd'}}} component={ProductScreen} name="Product Details" />
+      <Stack.Screen options={{headerStyle: {backgroundColor: '#22e3dd'}, 
+                              headerTintColor: 'white'}} 
+                    component={ProductScreen} 
+                    name="Product Details" />
     </Stack.Navigator>
   )
 }

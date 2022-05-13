@@ -17,12 +17,14 @@ const style = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     description: {
         marginVertical: 10,
         lineHeight: 20,
         textAlign: 'justify',
+        marginHorizontal: 10,
     }
 });
 
