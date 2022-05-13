@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import CartProductItem from '../../components/CartProductItem';
 import Button from '../../components/Button';
-import {DataStore, Auth} from 'aws-amplify';
+import {DataStore, Auth, API} from 'aws-amplify';
 
 import {Product, CartProduct} from '../../models';
 
@@ -17,24 +17,32 @@ const ShoppingCartScreen = () => {
 
     const fetchCartProducts = async () => {
         const userData = await Auth.currentAuthenticatedUser();
+        // API.post('myAPI', '/ecommerce/fetchCart/byUser', {body: {"userSub": userData.attributes.sub}}).then(response => {
+        //      console.log(response);
+        // })
         DataStore.query(CartProduct, cp =>
             cp.userSub('eq', userData.attributes.sub),
-        ).then(setCartProducts);
+        ).then(setCartProducts)
     };
     
     useEffect(() => {
         fetchCartProducts();
     }, []);
-    
+
     useEffect(() => {
         if (cartProducts.filter(cp => !cp.product).length === 0) {
             return;
         }
         const fetchProducts = async () => {
             const products = await Promise.all(cartProducts.map(
-                cartProduct =>  DataStore.query(Product, cartProduct.productID),
-                ),
-            );
+                // Fetch of all products in cart
+                cartProduct =>  API.post('myAPI', '/ecommerce/fetchCart', {body: {"productID": cartProduct.productID}}).then((response) => {
+                    return response.body.data.Items;
+                }).catch((err) => {
+                    // Reset if it fails
+                    setCartProducts([]);
+                })
+            ));
             setCartProducts(currentCartProducts =>
                 currentCartProducts.map(cartProduct => ({
                     ...cartProduct,
@@ -46,8 +54,8 @@ const ShoppingCartScreen = () => {
       }, [cartProducts]);
     
     useEffect(() => {
-        const subscription = DataStore.observe(CartProduct).subscribe(msg =>
-            fetchCartProducts(),
+        const subscription = DataStore.observe(CartProduct).subscribe(msg => 
+            fetchCartProducts()
         );
         return subscription.unsubscribe;
     }, []);

@@ -37,7 +37,8 @@ export declare class CartProduct {
   readonly quantity: number;
   readonly option?: string | null;
   readonly userSub: string;
-  readonly product?: Product | null;
+  readonly productID: string;
+  readonly product?: Product | void | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<CartProduct, CartProductMetaData>);

@@ -1,10 +1,9 @@
-import { View, Text, Image, Pressable } from 'react-native'
-import React from 'react'
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { View, Text, Image, Pressable, ActivityIndicator } from 'react-native'
+import React, {useState} from 'react'
 import style from './style';
 import QuantitySelector from '../QuantitySelector';
 
-import { DataStore } from 'aws-amplify';
+import { DataStore, API } from 'aws-amplify';
 import { CartProduct } from '../../models';
 
 interface CartProductItemProps {
@@ -18,7 +17,17 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
 
     // Aggiornare il valore di Quantity nel datastore
     const updateQuantity = async (newQuantity: number) => {
-        // Estraggo il prodotto originale
+        API.post('myAPI', '/ecommerce/fetchCart/addQuantity', 
+        {
+            body: {
+                "id": cartProduct.id,
+                "quantity": newQuantity
+            }
+        }
+        ).then(response => console.log("Updated")).catch((e) => console.log(e));
+        
+        // DA IMPLEMENTARE => il DataStore non viene triggerato dalla sola modifica al DynamoDB in automatico.
+
         const original = await DataStore.query(CartProduct, cartProduct.id);
 
         // Aggiorno il prodotto originale sulla tabella CartProduct con il valore aggiornato
