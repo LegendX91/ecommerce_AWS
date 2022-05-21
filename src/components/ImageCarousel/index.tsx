@@ -36,7 +36,7 @@ const ImageCarousel = ({images}: {images: string[]}) => {
                         style.dot, {
                             backgroundColor: index === activeIndex ? '#c9c9c9' : '#ededed'  
                         }
-                    ]} />
+                    ]} key={index} />
                 ))}
             </View>
         </View>

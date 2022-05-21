@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, ActivityIndicator, Modal } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator, Modal, Pressable } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import style from './style';
@@ -156,12 +156,15 @@ const ProductScreen = () => {
                         animationType='fade'
                         transparent={true}
                     >
-                            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#f7f5f0', opacity: 0.85}}>
+                            <Pressable 
+                                        style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#f7f5f0', opacity: 0.85}}
+                                        onPress={() => setModalVisible(false)}    
+                            >
                                 <View style={{borderWidth: 1, margin: 10, borderRadius: 10, backgroundColor: 'white', borderColor: 'lightgrey'}}>
                                     <Text style={{margin: 10}}>{product.description}</Text>
                                 </View>
                                 <Button text={"Go Back"} onPress={() => setModalVisible(false)} ></Button>
-                            </View>
+                            </Pressable>
                     </Modal>
                     
                 </ScrollView>

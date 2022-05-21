@@ -4,6 +4,8 @@ const style = StyleSheet.create({
     root: {
         padding: 10,
         backgroundColor: 'white',
+        height: '100%',
+        width: '100%',
     },
     price: {
         textAlign: 'center',

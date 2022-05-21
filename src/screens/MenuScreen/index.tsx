@@ -44,20 +44,28 @@ const MenuScreen = () => {
                     </View>                            
                     <Text style={style.title}>Username: {user}</Text>
                     <Text style={style.title}>Email: {email}</Text>
-                    <Pressable  style={[style.logOutButton, {borderWidth: 1, borderColor: 'darkorange'}]}
+                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, backgroundColor: 'orange', borderColor: 'darkorange'}]}
                                 onPress={() => {
-                                    Auth.signOut();
+                                    console.warn('Accessing Saved Data...');
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
-                            Logout
+                            JB-Fast Checkout Settings
                         </Text>
                     </Pressable>
-                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, borderColor: 'darkorange'}]}
+                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, backgroundColor: 'orange', borderColor: 'darkorange'}]}
                                 onPress={() => {
                                     helloFromLambda();
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
                             Lambda!
+                        </Text>
+                    </Pressable>
+                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, borderColor: 'darkorange'}]}
+                                onPress={() => {
+                                    Auth.signOut();
+                                }}>
+                        <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
+                            Logout
                         </Text>
                     </Pressable>
                 </ImageBackground>
@@ -78,7 +86,7 @@ const style=StyleSheet.create({
         textShadowRadius: 10,
     },
     logOutButton: {
-        backgroundColor: 'orange',
+        backgroundColor: 'darkorange',
         width: Dimensions.get('screen').width - 20,
         opacity: 0.8,
         borderRadius: 15,
