@@ -39,9 +39,9 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
     }
 
     const deleteItem = async () => {
-        API.post('myAPI', '/ecommerce/deleteCartItem', {body: {"id" : cartProduct.id}}).then((response) => console.log(response)).catch(
-            (error) => console.log(error)
-        );
+        // API.post('myAPI', '/ecommerce/deleteCartItem', {body: {"id" : cartProduct.id}}).then((response) => console.log(response)).catch(
+        //    (error) => console.log(error)
+        // );
 
         // DA IMPLEMENTARE => il DataStore non viene triggerato dalla sola modifica al DynamoDB in automatico.
 

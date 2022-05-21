@@ -19,7 +19,7 @@
       "function": {
         "myLambda": {
           "deploymentBucketName": "amplify-ecommerceapp-dev-155717-deployment",
-          "s3Key": "amplify-builds/myLambda-746476736d4f50693054-build.zip"
+          "s3Key": "amplify-builds/myLambda-6f4f34772b5159637553-build.zip"
         }
       }
     }

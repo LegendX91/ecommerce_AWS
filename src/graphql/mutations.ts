@@ -2,6 +2,132 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    createProduct(input: $input, condition: $condition) {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    updateProduct(input: $input, condition: $condition) {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    deleteProduct(input: $input, condition: $condition) {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createCartProduct = /* GraphQL */ `
   mutation CreateCartProduct(
     $input: CreateCartProductInput!
@@ -128,40 +254,18 @@ export const deleteCartProduct = /* GraphQL */ `
     }
   }
 `;
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createLocations = /* GraphQL */ `
+  mutation CreateLocations(
+    $input: CreateLocationsInput!
+    $condition: ModelLocationsConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createLocations(input: $input, condition: $condition) {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version
@@ -170,40 +274,18 @@ export const createProduct = /* GraphQL */ `
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateLocations = /* GraphQL */ `
+  mutation UpdateLocations(
+    $input: UpdateLocationsInput!
+    $condition: ModelLocationsConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateLocations(input: $input, condition: $condition) {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version
@@ -212,40 +294,18 @@ export const updateProduct = /* GraphQL */ `
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteLocations = /* GraphQL */ `
+  mutation DeleteLocations(
+    $input: DeleteLocationsInput!
+    $condition: ModelLocationsConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteLocations(input: $input, condition: $condition) {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version

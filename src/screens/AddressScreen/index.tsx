@@ -4,6 +4,9 @@ import { Picker } from '@react-native-picker/picker';
 import style from './style';
 import countryList from 'country-list';
 import Button from '../../components/Button';
+import { API } from 'aws-amplify';
+
+import { v4 as uuidv4 } from 'uuid';
 
 const countries = countryList.getData();
 
@@ -14,35 +17,30 @@ const AddressScreen = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
+    const [error, setError] = useState(false);
 
     const onCheckout = () => {
-        if (!name) {
-            Alert.alert('Please fill in the name field');
-            return;
-        }
-        if (!phoneNumber) {
-            Alert.alert('Please fill in the phone number field');
-            return;
-        }
-        if (!address) {
-            Alert.alert('Please fill in the address field');
-            return;
-        }
-        if (!city) {
-            Alert.alert('Please fill in the city field');
-            return;
-        }
-        console.warn('Success!');
+        API.post('myAPI', '/ecommerce/checkOut/addAddress', 
+            {body: {
+                id: uuidv4(),
+                country: country,
+                name: name,
+                phoneNumber: phoneNumber,
+                address: address,
+                city: city 
+            }}).then(response => response === "Input Error" ? setError(true) : console.warn(response)).catch(error => console.warn(error));
     }
 
     return (
         <KeyboardAvoidingView
         >
             <ScrollView style={style.root}>
+                {error && <Text style={{color: 'red', fontSize: 15, fontStyle: 'italic', textAlign: 'center', fontWeight: 'bold'}}>Input Error! Please verify your data</Text>}
                 <View style={style.row}>
                     <Picker
                         selectedValue={country}
                         onValueChange={setCountry}
+                        style={{backgroundColor: 'white'}}
                     >
                         {countries.map((country: {name: string}) => (
                             <Picker.Item value={country.name} label={country.name} />
@@ -57,27 +55,6 @@ const AddressScreen = () => {
                         placeholder="Full Name"
                         value={name}
                         onChangeText={setName}
-                    />
-                </View>
-
-                <View style={style.row}>
-                    <Text style={style.label}>Phone Number</Text>
-                    <TextInput 
-                        style={style.input} 
-                        placeholder="Phone Number"
-                        value={phoneNumber}
-                        onChangeText={setPhoneNumber}
-                        keyboardType={'phone-pad'}
-                    />
-                </View>
-
-                <View style={style.row}>
-                    <Text style={style.label}>Address</Text>
-                    <TextInput 
-                        style={style.input} 
-                        placeholder="Address"
-                        value={address}
-                        onChangeText={setAddress}
                     />
                 </View>
 

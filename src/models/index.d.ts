@@ -12,6 +12,10 @@ type CartProductMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type LocationsMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Product {
   readonly id: string;
   readonly title: string;
@@ -37,10 +41,22 @@ export declare class CartProduct {
   readonly quantity: number;
   readonly option?: string | null;
   readonly userSub: string;
-  readonly productID: string;
-  readonly product?: Product | void | null;
+  readonly product?: Product | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<CartProduct, CartProductMetaData>);
   static copyOf(source: CartProduct, mutator: (draft: MutableModel<CartProduct, CartProductMetaData>) => MutableModel<CartProduct, CartProductMetaData> | void): CartProduct;
+}
+
+export declare class Locations {
+  readonly id: string;
+  readonly name: string;
+  readonly phone: number;
+  readonly address: string;
+  readonly nation: string;
+  readonly userSub: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Locations, LocationsMetaData>);
+  static copyOf(source: Locations, mutator: (draft: MutableModel<Locations, LocationsMetaData>) => MutableModel<Locations, LocationsMetaData> | void): Locations;
 }

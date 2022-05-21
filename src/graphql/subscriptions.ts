@@ -2,6 +2,123 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateProduct = /* GraphQL */ `
+  subscription OnCreateProduct {
+    onCreateProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateProduct = /* GraphQL */ `
+  subscription OnUpdateProduct {
+    onUpdateProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteProduct = /* GraphQL */ `
+  subscription OnDeleteProduct {
+    onDeleteProduct {
+      id
+      title
+      description
+      image
+      images
+      options
+      avgRatings
+      ratings
+      currentPrice
+      defaultPrice
+      tags
+      availability
+      orders {
+        items {
+          id
+          quantity
+          option
+          userSub
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateCartProduct = /* GraphQL */ `
   subscription OnCreateCartProduct {
     onCreateCartProduct {
@@ -119,37 +236,15 @@ export const onDeleteCartProduct = /* GraphQL */ `
     }
   }
 `;
-export const onCreateProduct = /* GraphQL */ `
-  subscription OnCreateProduct {
-    onCreateProduct {
+export const onCreateLocations = /* GraphQL */ `
+  subscription OnCreateLocations {
+    onCreateLocations {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version
@@ -158,37 +253,15 @@ export const onCreateProduct = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateProduct = /* GraphQL */ `
-  subscription OnUpdateProduct {
-    onUpdateProduct {
+export const onUpdateLocations = /* GraphQL */ `
+  subscription OnUpdateLocations {
+    onUpdateLocations {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version
@@ -197,37 +270,15 @@ export const onUpdateProduct = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteProduct = /* GraphQL */ `
-  subscription OnDeleteProduct {
-    onDeleteProduct {
+export const onDeleteLocations = /* GraphQL */ `
+  subscription OnDeleteLocations {
+    onDeleteLocations {
       id
-      title
-      description
-      image
-      images
-      options
-      avgRatings
-      ratings
-      currentPrice
-      defaultPrice
-      tags
-      availability
-      orders {
-        items {
-          id
-          quantity
-          option
-          userSub
-          productID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        nextToken
-        startedAt
-      }
+      name
+      phone
+      address
+      nation
+      userSub
       createdAt
       updatedAt
       _version

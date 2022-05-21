@@ -2,151 +2,6 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateCartProductInput = {
-  id?: string | null,
-  quantity: number,
-  option?: string | null,
-  userSub: string,
-  productID: string,
-  _version?: number | null,
-};
-
-export type ModelCartProductConditionInput = {
-  quantity?: ModelIntInput | null,
-  option?: ModelStringInput | null,
-  userSub?: ModelStringInput | null,
-  productID?: ModelIDInput | null,
-  and?: Array< ModelCartProductConditionInput | null > | null,
-  or?: Array< ModelCartProductConditionInput | null > | null,
-  not?: ModelCartProductConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type CartProduct = {
-  __typename: "CartProduct",
-  id: string,
-  quantity: number,
-  option?: string | null,
-  userSub: string,
-  productID: string,
-  product?: Product | null,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type Product = {
-  __typename: "Product",
-  id: string,
-  title: string,
-  description?: string | null,
-  image: string,
-  images: Array< string >,
-  options?: Array< string > | null,
-  avgRatings: number,
-  ratings?: number | null,
-  currentPrice: Array< number >,
-  defaultPrice: Array< number >,
-  tags?: Array< string | null > | null,
-  availability: Array< string >,
-  orders?: ModelCartProductConnection | null,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type ModelCartProductConnection = {
-  __typename: "ModelCartProductConnection",
-  items:  Array<CartProduct | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type UpdateCartProductInput = {
-  id: string,
-  quantity?: number | null,
-  option?: string | null,
-  userSub?: string | null,
-  productID?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteCartProductInput = {
-  id: string,
-  _version?: number | null,
-};
-
 export type CreateProductInput = {
   id?: string | null,
   title: string,
@@ -180,6 +35,46 @@ export type ModelProductConditionInput = {
   not?: ModelProductConditionInput | null,
 };
 
+export type ModelStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export enum ModelAttributeTypes {
+  binary = "binary",
+  binarySet = "binarySet",
+  bool = "bool",
+  list = "list",
+  map = "map",
+  number = "number",
+  numberSet = "numberSet",
+  string = "string",
+  stringSet = "stringSet",
+  _null = "_null",
+}
+
+
+export type ModelSizeInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+};
+
 export type ModelFloatInput = {
   ne?: number | null,
   eq?: number | null,
@@ -190,6 +85,62 @@ export type ModelFloatInput = {
   between?: Array< number | null > | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Product = {
+  __typename: "Product",
+  id: string,
+  title: string,
+  description?: string | null,
+  image: string,
+  images: Array< string >,
+  options?: Array< string > | null,
+  avgRatings: number,
+  ratings?: number | null,
+  currentPrice: Array< number >,
+  defaultPrice: Array< number >,
+  tags?: Array< string | null > | null,
+  availability: Array< string >,
+  orders?: ModelCartProductConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type ModelCartProductConnection = {
+  __typename: "ModelCartProductConnection",
+  items:  Array<CartProduct | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type CartProduct = {
+  __typename: "CartProduct",
+  id: string,
+  quantity: number,
+  option?: string | null,
+  userSub: string,
+  productID: string,
+  product?: Product | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
 export type UpdateProductInput = {
@@ -213,15 +164,104 @@ export type DeleteProductInput = {
   _version?: number | null,
 };
 
-export type ModelCartProductFilterInput = {
-  id?: ModelIDInput | null,
+export type CreateCartProductInput = {
+  id?: string | null,
+  quantity: number,
+  option?: string | null,
+  userSub: string,
+  productID: string,
+  _version?: number | null,
+};
+
+export type ModelCartProductConditionInput = {
   quantity?: ModelIntInput | null,
   option?: ModelStringInput | null,
   userSub?: ModelStringInput | null,
   productID?: ModelIDInput | null,
-  and?: Array< ModelCartProductFilterInput | null > | null,
-  or?: Array< ModelCartProductFilterInput | null > | null,
-  not?: ModelCartProductFilterInput | null,
+  and?: Array< ModelCartProductConditionInput | null > | null,
+  or?: Array< ModelCartProductConditionInput | null > | null,
+  not?: ModelCartProductConditionInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type UpdateCartProductInput = {
+  id: string,
+  quantity?: number | null,
+  option?: string | null,
+  userSub?: string | null,
+  productID?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteCartProductInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateLocationsInput = {
+  id?: string | null,
+  name: string,
+  phone: number,
+  address: string,
+  nation: string,
+  userSub: string,
+  _version?: number | null,
+};
+
+export type ModelLocationsConditionInput = {
+  name?: ModelStringInput | null,
+  phone?: ModelIntInput | null,
+  address?: ModelStringInput | null,
+  nation?: ModelStringInput | null,
+  userSub?: ModelStringInput | null,
+  and?: Array< ModelLocationsConditionInput | null > | null,
+  or?: Array< ModelLocationsConditionInput | null > | null,
+  not?: ModelLocationsConditionInput | null,
+};
+
+export type Locations = {
+  __typename: "Locations",
+  id: string,
+  name: string,
+  phone: number,
+  address: string,
+  nation: string,
+  userSub: string,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type UpdateLocationsInput = {
+  id: string,
+  name?: string | null,
+  phone?: number | null,
+  address?: string | null,
+  nation?: string | null,
+  userSub?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteLocationsInput = {
+  id: string,
+  _version?: number | null,
 };
 
 export type ModelProductFilterInput = {
@@ -247,6 +287,174 @@ export type ModelProductConnection = {
   items:  Array<Product | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type ModelCartProductFilterInput = {
+  id?: ModelIDInput | null,
+  quantity?: ModelIntInput | null,
+  option?: ModelStringInput | null,
+  userSub?: ModelStringInput | null,
+  productID?: ModelIDInput | null,
+  and?: Array< ModelCartProductFilterInput | null > | null,
+  or?: Array< ModelCartProductFilterInput | null > | null,
+  not?: ModelCartProductFilterInput | null,
+};
+
+export type ModelLocationsFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  phone?: ModelIntInput | null,
+  address?: ModelStringInput | null,
+  nation?: ModelStringInput | null,
+  userSub?: ModelStringInput | null,
+  and?: Array< ModelLocationsFilterInput | null > | null,
+  or?: Array< ModelLocationsFilterInput | null > | null,
+  not?: ModelLocationsFilterInput | null,
+};
+
+export type ModelLocationsConnection = {
+  __typename: "ModelLocationsConnection",
+  items:  Array<Locations | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type CreateProductMutationVariables = {
+  input: CreateProductInput,
+  condition?: ModelProductConditionInput | null,
+};
+
+export type CreateProductMutation = {
+  createProduct?:  {
+    __typename: "Product",
+    id: string,
+    title: string,
+    description?: string | null,
+    image: string,
+    images: Array< string >,
+    options?: Array< string > | null,
+    avgRatings: number,
+    ratings?: number | null,
+    currentPrice: Array< number >,
+    defaultPrice: Array< number >,
+    tags?: Array< string | null > | null,
+    availability: Array< string >,
+    orders?:  {
+      __typename: "ModelCartProductConnection",
+      items:  Array< {
+        __typename: "CartProduct",
+        id: string,
+        quantity: number,
+        option?: string | null,
+        userSub: string,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateProductMutationVariables = {
+  input: UpdateProductInput,
+  condition?: ModelProductConditionInput | null,
+};
+
+export type UpdateProductMutation = {
+  updateProduct?:  {
+    __typename: "Product",
+    id: string,
+    title: string,
+    description?: string | null,
+    image: string,
+    images: Array< string >,
+    options?: Array< string > | null,
+    avgRatings: number,
+    ratings?: number | null,
+    currentPrice: Array< number >,
+    defaultPrice: Array< number >,
+    tags?: Array< string | null > | null,
+    availability: Array< string >,
+    orders?:  {
+      __typename: "ModelCartProductConnection",
+      items:  Array< {
+        __typename: "CartProduct",
+        id: string,
+        quantity: number,
+        option?: string | null,
+        userSub: string,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteProductMutationVariables = {
+  input: DeleteProductInput,
+  condition?: ModelProductConditionInput | null,
+};
+
+export type DeleteProductMutation = {
+  deleteProduct?:  {
+    __typename: "Product",
+    id: string,
+    title: string,
+    description?: string | null,
+    image: string,
+    images: Array< string >,
+    options?: Array< string > | null,
+    avgRatings: number,
+    ratings?: number | null,
+    currentPrice: Array< number >,
+    defaultPrice: Array< number >,
+    tags?: Array< string | null > | null,
+    availability: Array< string >,
+    orders?:  {
+      __typename: "ModelCartProductConnection",
+      items:  Array< {
+        __typename: "CartProduct",
+        id: string,
+        quantity: number,
+        option?: string | null,
+        userSub: string,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
 };
 
 export type CreateCartProductMutationVariables = {
@@ -387,13 +595,78 @@ export type DeleteCartProductMutation = {
   } | null,
 };
 
-export type CreateProductMutationVariables = {
-  input: CreateProductInput,
-  condition?: ModelProductConditionInput | null,
+export type CreateLocationsMutationVariables = {
+  input: CreateLocationsInput,
+  condition?: ModelLocationsConditionInput | null,
 };
 
-export type CreateProductMutation = {
-  createProduct?:  {
+export type CreateLocationsMutation = {
+  createLocations?:  {
+    __typename: "Locations",
+    id: string,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateLocationsMutationVariables = {
+  input: UpdateLocationsInput,
+  condition?: ModelLocationsConditionInput | null,
+};
+
+export type UpdateLocationsMutation = {
+  updateLocations?:  {
+    __typename: "Locations",
+    id: string,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteLocationsMutationVariables = {
+  input: DeleteLocationsInput,
+  condition?: ModelLocationsConditionInput | null,
+};
+
+export type DeleteLocationsMutation = {
+  deleteLocations?:  {
+    __typename: "Locations",
+    id: string,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type GetProductQueryVariables = {
+  id: string,
+};
+
+export type GetProductQuery = {
+  getProduct?:  {
     __typename: "Product",
     id: string,
     title: string,
@@ -433,95 +706,82 @@ export type CreateProductMutation = {
   } | null,
 };
 
-export type UpdateProductMutationVariables = {
-  input: UpdateProductInput,
-  condition?: ModelProductConditionInput | null,
+export type ListProductsQueryVariables = {
+  filter?: ModelProductFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type UpdateProductMutation = {
-  updateProduct?:  {
-    __typename: "Product",
-    id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    avgRatings: number,
-    ratings?: number | null,
-    currentPrice: Array< number >,
-    defaultPrice: Array< number >,
-    tags?: Array< string | null > | null,
-    availability: Array< string >,
-    orders?:  {
-      __typename: "ModelCartProductConnection",
-      items:  Array< {
-        __typename: "CartProduct",
-        id: string,
-        quantity: number,
-        option?: string | null,
-        userSub: string,
-        productID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+export type ListProductsQuery = {
+  listProducts?:  {
+    __typename: "ModelProductConnection",
+    items:  Array< {
+      __typename: "Product",
+      id: string,
+      title: string,
+      description?: string | null,
+      image: string,
+      images: Array< string >,
+      options?: Array< string > | null,
+      avgRatings: number,
+      ratings?: number | null,
+      currentPrice: Array< number >,
+      defaultPrice: Array< number >,
+      tags?: Array< string | null > | null,
+      availability: Array< string >,
+      orders?:  {
+        __typename: "ModelCartProductConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
-export type DeleteProductMutationVariables = {
-  input: DeleteProductInput,
-  condition?: ModelProductConditionInput | null,
+export type SyncProductsQueryVariables = {
+  filter?: ModelProductFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
 };
 
-export type DeleteProductMutation = {
-  deleteProduct?:  {
-    __typename: "Product",
-    id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    avgRatings: number,
-    ratings?: number | null,
-    currentPrice: Array< number >,
-    defaultPrice: Array< number >,
-    tags?: Array< string | null > | null,
-    availability: Array< string >,
-    orders?:  {
-      __typename: "ModelCartProductConnection",
-      items:  Array< {
-        __typename: "CartProduct",
-        id: string,
-        quantity: number,
-        option?: string | null,
-        userSub: string,
-        productID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+export type SyncProductsQuery = {
+  syncProducts?:  {
+    __typename: "ModelProductConnection",
+    items:  Array< {
+      __typename: "Product",
+      id: string,
+      title: string,
+      description?: string | null,
+      image: string,
+      images: Array< string >,
+      options?: Array< string > | null,
+      avgRatings: number,
+      ratings?: number | null,
+      currentPrice: Array< number >,
+      defaultPrice: Array< number >,
+      tags?: Array< string | null > | null,
+      availability: Array< string >,
+      orders?:  {
+        __typename: "ModelCartProductConnection",
+        nextToken?: string | null,
+        startedAt?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -665,12 +925,86 @@ export type SyncCartProductsQuery = {
   } | null,
 };
 
-export type GetProductQueryVariables = {
+export type GetLocationsQueryVariables = {
   id: string,
 };
 
-export type GetProductQuery = {
-  getProduct?:  {
+export type GetLocationsQuery = {
+  getLocations?:  {
+    __typename: "Locations",
+    id: string,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListLocationsQueryVariables = {
+  filter?: ModelLocationsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListLocationsQuery = {
+  listLocations?:  {
+    __typename: "ModelLocationsConnection",
+    items:  Array< {
+      __typename: "Locations",
+      id: string,
+      name: string,
+      phone: number,
+      address: string,
+      nation: string,
+      userSub: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncLocationsQueryVariables = {
+  filter?: ModelLocationsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncLocationsQuery = {
+  syncLocations?:  {
+    __typename: "ModelLocationsConnection",
+    items:  Array< {
+      __typename: "Locations",
+      id: string,
+      name: string,
+      phone: number,
+      address: string,
+      nation: string,
+      userSub: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateProductSubscription = {
+  onCreateProduct?:  {
     __typename: "Product",
     id: string,
     title: string,
@@ -710,82 +1044,85 @@ export type GetProductQuery = {
   } | null,
 };
 
-export type ListProductsQueryVariables = {
-  filter?: ModelProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListProductsQuery = {
-  listProducts?:  {
-    __typename: "ModelProductConnection",
-    items:  Array< {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      avgRatings: number,
-      ratings?: number | null,
-      currentPrice: Array< number >,
-      defaultPrice: Array< number >,
-      tags?: Array< string | null > | null,
-      availability: Array< string >,
-      orders?:  {
-        __typename: "ModelCartProductConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+export type OnUpdateProductSubscription = {
+  onUpdateProduct?:  {
+    __typename: "Product",
+    id: string,
+    title: string,
+    description?: string | null,
+    image: string,
+    images: Array< string >,
+    options?: Array< string > | null,
+    avgRatings: number,
+    ratings?: number | null,
+    currentPrice: Array< number >,
+    defaultPrice: Array< number >,
+    tags?: Array< string | null > | null,
+    availability: Array< string >,
+    orders?:  {
+      __typename: "ModelCartProductConnection",
+      items:  Array< {
+        __typename: "CartProduct",
+        id: string,
+        quantity: number,
+        option?: string | null,
+        userSub: string,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type SyncProductsQueryVariables = {
-  filter?: ModelProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProductsQuery = {
-  syncProducts?:  {
-    __typename: "ModelProductConnection",
-    items:  Array< {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      avgRatings: number,
-      ratings?: number | null,
-      currentPrice: Array< number >,
-      defaultPrice: Array< number >,
-      tags?: Array< string | null > | null,
-      availability: Array< string >,
-      orders?:  {
-        __typename: "ModelCartProductConnection",
-        nextToken?: string | null,
-        startedAt?: number | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
+export type OnDeleteProductSubscription = {
+  onDeleteProduct?:  {
+    __typename: "Product",
+    id: string,
+    title: string,
+    description?: string | null,
+    image: string,
+    images: Array< string >,
+    options?: Array< string > | null,
+    avgRatings: number,
+    ratings?: number | null,
+    currentPrice: Array< number >,
+    defaultPrice: Array< number >,
+    tags?: Array< string | null > | null,
+    availability: Array< string >,
+    orders?:  {
+      __typename: "ModelCartProductConnection",
+      items:  Array< {
+        __typename: "CartProduct",
+        id: string,
+        quantity: number,
+        option?: string | null,
+        userSub: string,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      } | null >,
+      nextToken?: string | null,
+      startedAt?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -912,39 +1249,15 @@ export type OnDeleteCartProductSubscription = {
   } | null,
 };
 
-export type OnCreateProductSubscription = {
-  onCreateProduct?:  {
-    __typename: "Product",
+export type OnCreateLocationsSubscription = {
+  onCreateLocations?:  {
+    __typename: "Locations",
     id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    avgRatings: number,
-    ratings?: number | null,
-    currentPrice: Array< number >,
-    defaultPrice: Array< number >,
-    tags?: Array< string | null > | null,
-    availability: Array< string >,
-    orders?:  {
-      __typename: "ModelCartProductConnection",
-      items:  Array< {
-        __typename: "CartProduct",
-        id: string,
-        quantity: number,
-        option?: string | null,
-        userSub: string,
-        productID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -953,39 +1266,15 @@ export type OnCreateProductSubscription = {
   } | null,
 };
 
-export type OnUpdateProductSubscription = {
-  onUpdateProduct?:  {
-    __typename: "Product",
+export type OnUpdateLocationsSubscription = {
+  onUpdateLocations?:  {
+    __typename: "Locations",
     id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    avgRatings: number,
-    ratings?: number | null,
-    currentPrice: Array< number >,
-    defaultPrice: Array< number >,
-    tags?: Array< string | null > | null,
-    availability: Array< string >,
-    orders?:  {
-      __typename: "ModelCartProductConnection",
-      items:  Array< {
-        __typename: "CartProduct",
-        id: string,
-        quantity: number,
-        option?: string | null,
-        userSub: string,
-        productID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -994,39 +1283,15 @@ export type OnUpdateProductSubscription = {
   } | null,
 };
 
-export type OnDeleteProductSubscription = {
-  onDeleteProduct?:  {
-    __typename: "Product",
+export type OnDeleteLocationsSubscription = {
+  onDeleteLocations?:  {
+    __typename: "Locations",
     id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    avgRatings: number,
-    ratings?: number | null,
-    currentPrice: Array< number >,
-    defaultPrice: Array< number >,
-    tags?: Array< string | null > | null,
-    availability: Array< string >,
-    orders?:  {
-      __typename: "ModelCartProductConnection",
-      items:  Array< {
-        __typename: "CartProduct",
-        id: string,
-        quantity: number,
-        option?: string | null,
-        userSub: string,
-        productID: string,
-        createdAt: string,
-        updatedAt: string,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-      } | null >,
-      nextToken?: string | null,
-      startedAt?: number | null,
-    } | null,
+    name: string,
+    phone: number,
+    address: string,
+    nation: string,
+    userSub: string,
     createdAt: string,
     updatedAt: string,
     _version: number,

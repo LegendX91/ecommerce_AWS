@@ -24,11 +24,12 @@ const MenuScreen = () => {
 
     const navigation = useNavigation();
 
-    function helloFromLambda() {
-        API.get('myAPI', '/ecommerce', {}).then((response) => {
+    async function helloFromLambda() {
+        API.post('myAPI', '/ecommerce', {}).then((response) => {
             console.warn(response);
-        });
-        
+        }).catch(error => console.warn(error));
+        const test = await Auth.Credentials;
+        console.log(test);
     }
 
     return (

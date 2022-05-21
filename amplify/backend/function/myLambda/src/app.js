@@ -17,17 +17,21 @@ app.use(function(req, res, next) {
 });
 
 
-/**********************
- * get method *
- **********************/
+/*******************************
+ * Hello World (GET) method *
+ ******************************/
 
-app.get('/ecommerce', function(req, res) {
-    res.send("Hello from Lambda!");
+app.post('/ecommerce', function(req, res) {
+    var event = req.apiGateway.event;
+    var context = req.apiGateway.context;
+    
+    
+    res.json(req.apiGateway.event);
 });
 
-/****************************
-* post method *
-****************************/
+/*******************************
+ * Search Method (POST)  *
+ ******************************/
 
 app.post('/ecommerce/search', function(req, res) {// Add your code here
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
@@ -54,6 +58,10 @@ app.post('/ecommerce/search', function(req, res) {// Add your code here
   });
 });
 
+/***********************************
+ * Fetch Cart by Product ID POST *
+ **********************************/
+
 app.post('/ecommerce/fetchCart', function(req, res) {// Add your code here
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
     
@@ -76,6 +84,10 @@ app.post('/ecommerce/fetchCart', function(req, res) {// Add your code here
   });
 });
 
+/*******************************
+ * Fetch Cart by UserSub POST *
+ ******************************/
+
 app.post('/ecommerce/fetchCart/byUser', function(req, res) {
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
     
@@ -97,6 +109,10 @@ app.post('/ecommerce/fetchCart/byUser', function(req, res) {
     }
   });
 });
+
+/*******************************
+ * Add Quantity Method POST *
+ ******************************/
 
 app.post('/ecommerce/fetchCart/addQuantity', function(req, res) {
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
@@ -124,6 +140,10 @@ app.post('/ecommerce/fetchCart/addQuantity', function(req, res) {
     })
 });
 
+/*******************************
+ * Delete Cart Item POST *
+ ******************************/
+
 app.post('/ecommerce/deleteCartItem', function(req, res) {
   var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
     
@@ -142,6 +162,10 @@ app.post('/ecommerce/deleteCartItem', function(req, res) {
       }
     })
 });
+
+/*******************************
+ * Server Initialized *
+ ******************************/
 
 app.listen(3000, function() {
     console.log("App started")

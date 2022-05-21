@@ -22,4 +22,13 @@ type CartProduct @model @auth(rules: [{allow: public}]) {
   productID: ID! @index(name: "byProduct")
   product: Product @belongsTo(fields: ["productID"])
 }
+
+type Locations @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  phone: Int!
+  address: String!
+  nation: String!
+  userSub: String!
+}
  
