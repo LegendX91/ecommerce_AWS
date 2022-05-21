@@ -45,7 +45,7 @@ const AddressScreen = () => {
                         style={{backgroundColor: 'white'}}
                     >
                         {countries.map((country: {name: string}) => (
-                            <Picker.Item value={country.name} label={country.name} />
+                            <Picker.Item key={countries.indexOf(country)} value={country.name} label={country.name} />
                         ))}
                     </Picker>
                 </View>
