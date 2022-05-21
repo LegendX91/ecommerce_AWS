@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import style from './style';
 import countryList from 'country-list';
 import Button from '../../components/Button';
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -19,7 +19,8 @@ const AddressScreen = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState(false);
 
-    const onCheckout = () => {
+    const onCheckout = async () => {
+        const userData = await Auth.currentAuthenticatedUser(); 
         API.post('myAPI', '/ecommerce/checkOut/addAddress', 
             {body: {
                 id: uuidv4(),
@@ -27,7 +28,8 @@ const AddressScreen = () => {
                 name: name,
                 phoneNumber: phoneNumber,
                 address: address,
-                city: city 
+                city: city,
+                userSub: userData.attributes.sub,
             }}).then(response => response === "Input Error" ? setError(true) : console.warn(response)).catch(error => console.warn(error));
     }
 
