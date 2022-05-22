@@ -1,4 +1,4 @@
-import { View, Text} from 'react-native'
+import { View, Text, Pressable} from 'react-native'
 import React from 'react'
 import style from './style';
 
@@ -12,6 +12,7 @@ interface LocationItemProps {
         phoneNumber: number,
         userSub: string,
     },
+    removeItem: (id: string) => void
 }
 
 const LocationItem = (props: LocationItemProps) => {
@@ -20,13 +21,13 @@ const LocationItem = (props: LocationItemProps) => {
 
     return (
         <View style={style.root}>
-            {console.log(item.name)}
             <View style={style.rightContainer}>
                 <Text style={style.title}>Name: {item.name}</Text>
                 <Text style={style.title}>Address: {item.address}</Text>
                 <Text style={style.title}>City: {item.city}</Text>
                 <Text style={style.title}>Country: {item.country}</Text>
                 <Text style={style.title}>Phone Number: {item.phoneNumber}</Text>
+                <Pressable onPress={() => props.removeItem(item.id)}><Text>REMOVE ITEM</Text></Pressable>
             </View>     
         </View>
   )

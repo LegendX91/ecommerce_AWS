@@ -4,7 +4,7 @@ import HomeStack from './homeStack';
 import Entypo from 'react-native-vector-icons/Entypo';
 import ShoppingCartStack from './shoppingCartStack';
 import MenuScreen from '../screens/MenuScreen';
-import LocationScreen from '../screens/LocationScreen';
+import LocationsStack from './locationStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,11 +35,11 @@ const BottomTabNavigator = () => {
               headerShown: false
             }}  />
           <Tab.Screen 
-            component={LocationScreen} 
-            name="SavedBookmarks"
+            component={LocationsStack} 
+            name="Addresses"
             options={{
               tabBarIcon:(({color}) => <Entypo name="book" size={30} color={color}/>),
-              headerShown: false,
+              headerShown: false
             }} />
           <Tab.Screen 
             component={MenuScreen} 
