@@ -20,7 +20,7 @@ const style = StyleSheet.create({
         textAlign: 'justify',
         fontSize: 14,
         fontWeight: 'bold',
-        fontStyle: 'italic',
+        fontStyle: 'normal',
     },
     price: {
         fontSize: 18,

@@ -37,7 +37,7 @@ const AddressScreen = () => {
             }}).then(response => 
                 response === "Input Error" ? 
                     setError(true) : 
-                    navigation.navigate('Home')
+                    navigation.navigate('Order Placed')
                 ).catch(error => console.warn(error));
     }
 

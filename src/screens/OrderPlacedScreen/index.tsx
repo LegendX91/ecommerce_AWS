@@ -1,41 +1,19 @@
 import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Dimensions } from 'react-native';
 
-import { Auth, API } from 'aws-amplify';
 import { useNavigation } from '@react-navigation/native';
 
 import SVGImg from '../../assets/logo_app_short.svg';
 
-const MenuScreen = () => {
-
-    const [user, setUser] = useState('');
-    const [email, setEmail] = useState('');
-
-    async function checkUser() {
-        let test = await Auth.currentAuthenticatedUser();  
-        setUser(test.username);
-        setEmail(test.attributes.email);
-    }
-
-    useEffect(() => {
-        checkUser();
-    }, [])
+const OrderPlacedScreen = () => {
 
     const navigation = useNavigation();
-
-    async function helloFromLambda() {
-        API.post('myAPI', '/ecommerce', {}).then((response) => {
-            console.warn(response);
-        }).catch(error => console.warn(error));
-        const test = await Auth.Credentials;
-        console.log(test);
-    }
 
     return (
             <View>
                 <ImageBackground    blurRadius={3}
-                                    source={require('../../../assets/creare-sito-ecommerce.jpg')} 
+                                    source={require('../../../assets/orderPlaced.jpg')} 
                                     style={{    width: '100%',
                                                 height: '100%',
                                                 justifyContent: 'center',
@@ -43,22 +21,13 @@ const MenuScreen = () => {
                     <View style={{alignItems: 'center'}}>
                         <SVGImg width={200} height={200}/>
                     </View>                            
-                    <Text style={style.title}>Username: {user}</Text>
-                    <Text style={style.title}>Email: {email}</Text>
+                    <Text style={style.title}>Congratulations! Your Order has been placed succesfully!</Text>
                     <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, backgroundColor: 'orange', borderColor: 'darkorange'}]}
                                 onPress={() => {
-                                    helloFromLambda();
+                                    navigation.navigate("Cart Screen");
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
-                            Lambda!
-                        </Text>
-                    </Pressable>
-                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, borderColor: 'darkorange'}]}
-                                onPress={() => {
-                                    Auth.signOut();
-                                }}>
-                        <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
-                            Logout
+                            Back to your cart
                         </Text>
                     </Pressable>
                 </ImageBackground>
@@ -95,4 +64,4 @@ const style=StyleSheet.create({
     },
 })
 
-export default MenuScreen;
+export default OrderPlacedScreen;

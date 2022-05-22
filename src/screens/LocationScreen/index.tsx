@@ -66,8 +66,8 @@ const LocationScreen = () => {
                         <Text style={{textAlign: 'center', color: 'black', fontSize: 13, fontStyle: 'italic'}}>Refresh</Text>
                 </Pressable>
             </View>
-            <View style={{  marginHorizontal: '5%', flexDirection: 'column', backgroundColor: 'lightgrey', height: '85%', borderWidth: 1,
-                            borderColor: 'grey', borderRadius: 10}}>
+            <View style={{  marginHorizontal: '5%', flexDirection: 'column', backgroundColor: '#e6f7f7', height: '85%', borderWidth: 1,
+                            borderColor: 'grey', borderRadius: 10, paddingTop: 2, paddingVertical: 5}}>
                 {loading ? 
                 <ActivityIndicator size='large' style={{marginVertical: '75%'}}/> : 
                 <FlatList   data={locations} 

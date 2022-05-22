@@ -26,11 +26,11 @@ const LocationItem = (props: LocationItemProps) => {
                 <Pressable style={{flex: 1}}onPress={() => props.removeItem(item.id)}>
                     <Entypo name='cross' size={18} color='orange' style={{left: '95%'}} />
                 </Pressable>
-                <Text style={style.title}>Name: {item.name}</Text>
-                <Text style={style.title}>Address: {item.address}</Text>
-                <Text style={style.title}>City: {item.city}</Text>
-                <Text style={style.title}>Country: {item.country}</Text>
-                <Text style={style.title}>Phone Number: {item.phoneNumber}</Text>
+                <Text style={style.title}>Name: <Text style={{fontStyle: 'italic', fontWeight: 'normal'}}>{item.name}</Text></Text>
+                <Text style={style.title}>Address: <Text style={{fontStyle: 'italic', fontWeight: 'normal'}}>{item.address}</Text></Text>
+                <Text style={style.title}>City: <Text style={{fontStyle: 'italic', fontWeight: 'normal'}}>{item.city}</Text></Text>
+                <Text style={style.title}>Country: <Text style={{fontStyle: 'italic', fontWeight: 'normal'}}>{item.country}</Text></Text>
+                <Text style={style.title}>Phone: <Text style={{fontStyle: 'italic', fontWeight: 'normal'}}>{item.phoneNumber}</Text></Text>
             </View>     
         </View>
   )
