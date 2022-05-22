@@ -253,10 +253,11 @@ export const getLocations = /* GraphQL */ `
     getLocations(id: $id) {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version
@@ -275,10 +276,11 @@ export const listLocations = /* GraphQL */ `
       items {
         id
         name
-        phone
+        phoneNumber
         address
-        nation
+        country
         userSub
+        city
         createdAt
         updatedAt
         _version
@@ -306,10 +308,11 @@ export const syncLocations = /* GraphQL */ `
       items {
         id
         name
-        phone
+        phoneNumber
         address
-        nation
+        country
         userSub
+        city
         createdAt
         updatedAt
         _version

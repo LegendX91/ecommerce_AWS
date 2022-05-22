@@ -241,10 +241,11 @@ export const onCreateLocations = /* GraphQL */ `
     onCreateLocations {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version
@@ -258,10 +259,11 @@ export const onUpdateLocations = /* GraphQL */ `
     onUpdateLocations {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version
@@ -275,10 +277,11 @@ export const onDeleteLocations = /* GraphQL */ `
     onDeleteLocations {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version

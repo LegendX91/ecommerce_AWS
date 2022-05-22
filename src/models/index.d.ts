@@ -51,10 +51,11 @@ export declare class CartProduct {
 export declare class Locations {
   readonly id: string;
   readonly name: string;
-  readonly phone: number;
+  readonly phoneNumber: number;
   readonly address: string;
-  readonly nation: string;
+  readonly country: string;
   readonly userSub: string;
+  readonly city: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Locations, LocationsMetaData>);

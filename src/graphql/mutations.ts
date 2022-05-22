@@ -262,10 +262,11 @@ export const createLocations = /* GraphQL */ `
     createLocations(input: $input, condition: $condition) {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version
@@ -282,10 +283,11 @@ export const updateLocations = /* GraphQL */ `
     updateLocations(input: $input, condition: $condition) {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version
@@ -302,10 +304,11 @@ export const deleteLocations = /* GraphQL */ `
     deleteLocations(input: $input, condition: $condition) {
       id
       name
-      phone
+      phoneNumber
       address
-      nation
+      country
       userSub
+      city
       createdAt
       updatedAt
       _version

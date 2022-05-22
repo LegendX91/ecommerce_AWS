@@ -26,9 +26,10 @@ type CartProduct @model @auth(rules: [{allow: public}]) {
 type Locations @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
-  phone: Int!
+  phoneNumber: Int!
   address: String!
-  nation: String!
+  country: String!
   userSub: String!
+  city: String!
 }
  

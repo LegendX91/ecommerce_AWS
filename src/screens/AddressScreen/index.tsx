@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { API, Auth } from 'aws-amplify';
 
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigation } from '@react-navigation/native';
 
 const countries = countryList.getData();
 
@@ -19,8 +20,11 @@ const AddressScreen = () => {
     const [city, setCity] = useState('');
     const [error, setError] = useState(false);
 
+    const navigation = useNavigation();
+
     const onCheckout = async () => {
         const userData = await Auth.currentAuthenticatedUser(); 
+        console.warn(name);
         API.post('myAPI', '/ecommerce/checkOut/addAddress', 
             {body: {
                 id: uuidv4(),
@@ -30,7 +34,11 @@ const AddressScreen = () => {
                 address: address,
                 city: city,
                 userSub: userData.attributes.sub,
-            }}).then(response => response === "Input Error" ? setError(true) : console.warn(response)).catch(error => console.warn(error));
+            }}).then(response => 
+                response === "Input Error" ? 
+                    setError(true) : 
+                    navigation.navigate('Home')
+                ).catch(error => console.warn(error));
     }
 
     return (

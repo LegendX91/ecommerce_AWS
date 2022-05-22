@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 
 
 /*******************************
- * Hello World (GET) method *
+ * Hello World (POST) method *
  ******************************/
 
 app.post('/ecommerce', function(req, res) {
@@ -159,6 +159,41 @@ app.post('/ecommerce/deleteCartItem', function(req, res) {
         res.send(err)
       }else{
         res.send({body:{id}})
+      }
+    })
+});
+
+/*******************************
+ * CheckOut addAddress POST *
+ ******************************/
+
+app.post('/ecommerce/checkOut/addAddress', function(req, res) {
+  var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+  
+    const { id, country, name, phoneNumber, address, city, userSub } = req.body;
+  
+    if(!id || !country || !city || !name || !phoneNumber || !address || !city || !userSub){
+      res.send("Input Error")
+    }
+  
+    var params = {
+      TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      Item: {
+        id: id,
+        country: country,
+        name: name,
+        phoneNumber: phoneNumber,
+        address: address,
+        userSub: userSub,
+        city: city,
+      },
+    };
+    
+    docClient.put(params, (err, data) => {
+      if(err){
+        res.send(err)
+      }else{
+        res.send(req.body);
       }
     })
 });

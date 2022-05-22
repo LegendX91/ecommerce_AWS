@@ -261,8 +261,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "phone": {
-                    "name": "phone",
+                "phoneNumber": {
+                    "name": "phoneNumber",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": true,
@@ -275,8 +275,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "nation": {
-                    "name": "nation",
+                "country": {
+                    "name": "country",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -284,6 +284,13 @@ export const schema = {
                 },
                 "userSub": {
                     "name": "userSub",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "city": {
+                    "name": "city",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -334,5 +341,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "7513c5079e93395fb874fd3b05596797"
+    "version": "d2767db28a076833df72cc52ef43e059"
 };
