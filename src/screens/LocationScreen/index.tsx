@@ -33,7 +33,7 @@ const LocationScreen = () => {
     }
 
     const removeItem = async(id: String) => {
-        console.warn(id);
+        setLoading(true);
         API.post('myAPI', '/ecommerce/deleteLocationItem', {body:{id: id}}).then(
             response => fetchLocations()).catch(
             error => console.warn(error));
@@ -46,6 +46,7 @@ const LocationScreen = () => {
     const isFocused = useIsFocused()
 
     useEffect(() => {
+        setLoading(true);
         fetchLocations();
     } , [isFocused])
 
@@ -65,15 +66,16 @@ const LocationScreen = () => {
                         <Text style={{textAlign: 'center', color: 'black', fontSize: 13, fontStyle: 'italic'}}>Refresh</Text>
                 </Pressable>
             </View>
-            <View style={{marginHorizontal: '5%', flexDirection: 'column'}}>
+            <View style={{  marginHorizontal: '5%', flexDirection: 'column', backgroundColor: 'lightgrey', height: '75%', borderWidth: 1,
+                            borderColor: 'grey', borderRadius: 10}}>
                 {loading ? 
-                <ActivityIndicator size='large' style={{marginVertical: '75%'}}/> : 
+                <ActivityIndicator size='large' style={{marginVertical: '80%'}}/> : 
                 <FlatList   data={locations} 
                             renderItem={({item}) => <LocationItem key={locations.indexOf(item)} 
                                                                 item={item}
                                                                 removeItem={removeItem}
                                                                 />} 
-                            showsVerticalScrollIndicator={false} />
+                            showsVerticalScrollIndicator={true} />
                 }
             </View>
         </View>
