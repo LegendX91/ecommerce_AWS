@@ -176,7 +176,7 @@ app.post('/ecommerce/checkOut/addAddress', function(req, res) {
       res.send("Input Error")
     }else{
       var params = {
-        TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+        TableName: 'LocationsTable',
         Item: {
           id: id,
           country: country,
@@ -206,7 +206,7 @@ app.post('/ecommerce/fetchLocations/byUser', function(req, res) {
     var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
     
     var params = {
-      TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      TableName: 'LocationsTable',
       FilterExpression : 'userSub = :userSub',
       ExpressionAttributeValues : {
         ':userSub' : req.body.userSub
@@ -234,7 +234,7 @@ app.post('/ecommerce/deleteLocationItem', function(req, res) {
     const {id} = req.body;
     
     var params = {
-      TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      TableName: 'LocationsTable',
       Key: { 'id': id },
     };
     
@@ -245,6 +245,32 @@ app.post('/ecommerce/deleteLocationItem', function(req, res) {
         res.send({body:{id}})
       }
     })
+});
+
+/*******************************
+ * TEST PRICE (POST)  *
+ ******************************/
+
+app.post('/ecommerce/test', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    var params = {
+      TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      FilterExpression : 'productID = :productID',
+      ExpressionAttributeValues : {
+        ':productID' : req.body.productID
+      }
+    };
+    
+    docClient.scan(params, function(err, data) {
+    if (err) {
+      console.warn("Error", err);
+      res.json({error: err});
+    } else {
+      console.warn("Success", data.Item);
+      res.json({body:{data}});;
+    }
+  });
 });
 
 /*******************************

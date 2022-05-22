@@ -5,6 +5,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import ShoppingCartStack from './shoppingCartStack';
 import MenuScreen from '../screens/MenuScreen';
 import LocationsStack from './locationStack';
+import OrderScreen from '../screens/OrderScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +42,14 @@ const BottomTabNavigator = () => {
               tabBarIcon:(({color}) => <Entypo name="book" size={30} color={color}/>),
               headerShown: false
             }} />
+          <Tab.Screen 
+            component={OrderScreen} 
+            name="Order Archive"
+            options={{
+              headerTintColor: 'white',
+              headerStyle: {backgroundColor: '#22e3dd'},
+              tabBarIcon:(({color}) => <Entypo name="archive" size={30} color={color}/>)
+            }}  />
           <Tab.Screen 
             component={MenuScreen} 
             name="Profile"
