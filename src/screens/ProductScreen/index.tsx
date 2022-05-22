@@ -58,7 +58,7 @@ const ProductScreen = () => {
             option: selectedOption,
             productID: product.id,
         });
-
+        
         DataStore.save(newCartProduct); // salva nel DataStore l'oggetto creato
         navigation.navigate("Shopping Cart");
     }

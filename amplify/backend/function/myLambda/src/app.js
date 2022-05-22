@@ -172,28 +172,77 @@ app.post('/ecommerce/checkOut/addAddress', function(req, res) {
   
     const { id, country, name, phoneNumber, address, city, userSub } = req.body;
   
-    if(!id || !country || !city || !name || !phoneNumber || !address || !city || !userSub){
+    if(!id || !country || !name || !phoneNumber || !address || !city || !userSub){
       res.send("Input Error")
+    }else{
+      var params = {
+        TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+        Item: {
+          id: id,
+          country: country,
+          name: name,
+          phoneNumber: phoneNumber,
+          address: address,
+          userSub: userSub,
+          city: city,
+        },
+      };
+      
+      docClient.put(params, (err, data) => {
+        if(err){
+          res.send(err)
+        }else{
+          res.send(req.body);
+        }
+      })
     }
-  
+});
+
+/*******************************
+ * Fetch Locations by UserSub POST *
+ ******************************/
+
+app.post('/ecommerce/fetchLocations/byUser', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
     var params = {
       TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
-      Item: {
-        id: id,
-        country: country,
-        name: name,
-        phoneNumber: phoneNumber,
-        address: address,
-        userSub: userSub,
-        city: city,
-      },
+      FilterExpression : 'userSub = :userSub',
+      ExpressionAttributeValues : {
+        ':userSub' : req.body.userSub
+      }
     };
     
-    docClient.put(params, (err, data) => {
+    docClient.scan(params, function(err, data) {
+    if (err) {
+      console.warn("Error", err);
+      res.json({error: err});
+    } else {
+      console.warn("Success", data.Item);
+      res.json({body:{data}});
+    }
+  });
+});
+
+/*******************************
+ * Delete Location Item POST *
+ ******************************/
+
+app.post('/ecommerce/deleteLocationItem', function(req, res) {
+  var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const {id} = req.body;
+    
+    var params = {
+      TableName: 'Locations-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+      Key: { 'id': id },
+    };
+    
+    docClient.delete(params, (err, data) => {
       if(err){
         res.send(err)
       }else{
-        res.send(req.body);
+        res.send({body:{id}})
       }
     })
 });

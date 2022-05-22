@@ -213,61 +213,6 @@ export type DeleteCartProductInput = {
   _version?: number | null,
 };
 
-export type CreateLocationsInput = {
-  id?: string | null,
-  name: string,
-  phoneNumber: number,
-  address: string,
-  country: string,
-  userSub: string,
-  city: string,
-  _version?: number | null,
-};
-
-export type ModelLocationsConditionInput = {
-  name?: ModelStringInput | null,
-  phoneNumber?: ModelIntInput | null,
-  address?: ModelStringInput | null,
-  country?: ModelStringInput | null,
-  userSub?: ModelStringInput | null,
-  city?: ModelStringInput | null,
-  and?: Array< ModelLocationsConditionInput | null > | null,
-  or?: Array< ModelLocationsConditionInput | null > | null,
-  not?: ModelLocationsConditionInput | null,
-};
-
-export type Locations = {
-  __typename: "Locations",
-  id: string,
-  name: string,
-  phoneNumber: number,
-  address: string,
-  country: string,
-  userSub: string,
-  city: string,
-  createdAt: string,
-  updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
-};
-
-export type UpdateLocationsInput = {
-  id: string,
-  name?: string | null,
-  phoneNumber?: number | null,
-  address?: string | null,
-  country?: string | null,
-  userSub?: string | null,
-  city?: string | null,
-  _version?: number | null,
-};
-
-export type DeleteLocationsInput = {
-  id: string,
-  _version?: number | null,
-};
-
 export type ModelProductFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -302,26 +247,6 @@ export type ModelCartProductFilterInput = {
   and?: Array< ModelCartProductFilterInput | null > | null,
   or?: Array< ModelCartProductFilterInput | null > | null,
   not?: ModelCartProductFilterInput | null,
-};
-
-export type ModelLocationsFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  phoneNumber?: ModelIntInput | null,
-  address?: ModelStringInput | null,
-  country?: ModelStringInput | null,
-  userSub?: ModelStringInput | null,
-  city?: ModelStringInput | null,
-  and?: Array< ModelLocationsFilterInput | null > | null,
-  or?: Array< ModelLocationsFilterInput | null > | null,
-  not?: ModelLocationsFilterInput | null,
-};
-
-export type ModelLocationsConnection = {
-  __typename: "ModelLocationsConnection",
-  items:  Array<Locations | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type CreateProductMutationVariables = {
@@ -600,75 +525,6 @@ export type DeleteCartProductMutation = {
   } | null,
 };
 
-export type CreateLocationsMutationVariables = {
-  input: CreateLocationsInput,
-  condition?: ModelLocationsConditionInput | null,
-};
-
-export type CreateLocationsMutation = {
-  createLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type UpdateLocationsMutationVariables = {
-  input: UpdateLocationsInput,
-  condition?: ModelLocationsConditionInput | null,
-};
-
-export type UpdateLocationsMutation = {
-  updateLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type DeleteLocationsMutationVariables = {
-  input: DeleteLocationsInput,
-  condition?: ModelLocationsConditionInput | null,
-};
-
-export type DeleteLocationsMutation = {
-  deleteLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
 export type GetProductQueryVariables = {
   id: string,
 };
@@ -933,87 +789,6 @@ export type SyncCartProductsQuery = {
   } | null,
 };
 
-export type GetLocationsQueryVariables = {
-  id: string,
-};
-
-export type GetLocationsQuery = {
-  getLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type ListLocationsQueryVariables = {
-  filter?: ModelLocationsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListLocationsQuery = {
-  listLocations?:  {
-    __typename: "ModelLocationsConnection",
-    items:  Array< {
-      __typename: "Locations",
-      id: string,
-      name: string,
-      phoneNumber: number,
-      address: string,
-      country: string,
-      userSub: string,
-      city: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncLocationsQueryVariables = {
-  filter?: ModelLocationsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncLocationsQuery = {
-  syncLocations?:  {
-    __typename: "ModelLocationsConnection",
-    items:  Array< {
-      __typename: "Locations",
-      id: string,
-      name: string,
-      phoneNumber: number,
-      address: string,
-      country: string,
-      userSub: string,
-      city: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
 export type OnCreateProductSubscription = {
   onCreateProduct?:  {
     __typename: "Product",
@@ -1252,60 +1027,6 @@ export type OnDeleteCartProductSubscription = {
       _deleted?: boolean | null,
       _lastChangedAt: number,
     } | null,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnCreateLocationsSubscription = {
-  onCreateLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnUpdateLocationsSubscription = {
-  onUpdateLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
-    createdAt: string,
-    updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-  } | null,
-};
-
-export type OnDeleteLocationsSubscription = {
-  onDeleteLocations?:  {
-    __typename: "Locations",
-    id: string,
-    name: string,
-    phoneNumber: number,
-    address: string,
-    country: string,
-    userSub: string,
-    city: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
