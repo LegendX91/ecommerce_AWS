@@ -1,10 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './homeStack';
-import HomeScreen from '../screens/HomeScreen';
 import Entypo from 'react-native-vector-icons/Entypo';
 import ShoppingCartStack from './shoppingCartStack';
 import MenuScreen from '../screens/MenuScreen';
+import LocationScreen from '../screens/LocationScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +34,13 @@ const BottomTabNavigator = () => {
               tabBarIcon:(({color}) => <Entypo name="shopping-cart" size={30} color={color}/>),
               headerShown: false
             }}  />
+          <Tab.Screen 
+            component={LocationScreen} 
+            name="SavedBookmarks"
+            options={{
+              tabBarIcon:(({color}) => <Entypo name="book" size={30} color={color}/>),
+              headerShown: false,
+            }} />
           <Tab.Screen 
             component={MenuScreen} 
             name="Profile"
