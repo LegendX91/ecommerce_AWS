@@ -135,7 +135,7 @@ const ShoppingCartScreen = () => {
                                 onPress={() => setModalCheckOutVisible(false)}    
                     >
                         <Button text={"Add new address for Shipping"} onPress={() => navigation.navigate("Address Details")} ></Button>
-                        <Button text={"Use a saved address for Shipping"} onPress={() => setModalCheckOutVisible(false)} ></Button>
+                        <Button text={"Use a saved address for Shipping"} onPress={() => navigation.navigate("Address Choice")} ></Button>
                     </Pressable>
             </Modal>
         </View> 

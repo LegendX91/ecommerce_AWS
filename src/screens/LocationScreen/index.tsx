@@ -34,8 +34,9 @@ const LocationScreen = () => {
 
     const removeItem = async(id: String) => {
         setLoading(true);
+        console.log(id);
         API.post('myAPI', '/ecommerce/deleteLocationItem', {body:{id: id}}).then(
-            response => fetchLocations()).catch(
+            response => console.log(response)).catch(
             error => console.warn(error));
     }
 
@@ -66,8 +67,8 @@ const LocationScreen = () => {
                         <Text style={{textAlign: 'center', color: 'black', fontSize: 13, fontStyle: 'italic'}}>Refresh</Text>
                 </Pressable>
             </View>
-            <View style={{  marginHorizontal: '5%', flexDirection: 'column', backgroundColor: '#e6f7f7', height: '85%', borderWidth: 1,
-                            borderColor: 'grey', borderRadius: 10, paddingTop: 2, paddingVertical: 5}}>
+            <View style={{  marginHorizontal: '5%', flexDirection: 'column', height: '85%', borderTopWidth: 1, borderBottomWidth: 1,
+                            borderColor: 'lightgrey', borderRadius: 10, paddingTop: 2, paddingVertical: 5}}>
                 {loading ? 
                 <ActivityIndicator size='large' style={{marginVertical: '75%'}}/> : 
                 <FlatList   data={locations} 

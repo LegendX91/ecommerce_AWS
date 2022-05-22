@@ -4,7 +4,7 @@ const style = StyleSheet.create({
     root: {
         flexDirection: 'row',
         margin: 10,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: '#d1d1d1',
         borderRadius: 10,
         backgroundColor: '#fff',
@@ -38,7 +38,7 @@ const style = StyleSheet.create({
         padding: 10,
         flex: 3,
         borderWidth: 1,
-        borderColor: 'grey',
+        borderColor: 'lightgrey',
         borderRadius: 5
     },
     rating: {
