@@ -17,9 +17,9 @@ const LocationScreen = () => {
         console.log("Fetching Locations");
         const userData = await Auth.currentAuthenticatedUser();
         API.post('myAPI', '/ecommerce/fetchLocations/byUser', {body:{userSub: userData.attributes.sub}}).then(
-            response => setLocations(response.body.data.Items)).catch(
+            response => setLocations(response.body.data.Items)).then(
+            response => setLoading(false)).catch(
             error => console.warn(error));
-        setLoading(false);
     }
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const LocationScreen = () => {
         setLoading(true);
         console.log(id);
         API.post('myAPI', '/ecommerce/deleteLocationItem', {body:{id: id}}).then(
-            response => console.log(response)).catch(
+            response => fetchLocations()).catch(
             error => console.warn(error));
     }
 
