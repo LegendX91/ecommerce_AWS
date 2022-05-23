@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Dimensions, TextInput, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import SVGImg from '../assets/logo_app_long_left_white.svg';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const Stack = createStackNavigator();
 
@@ -32,7 +33,8 @@ const HeaderComponent = ({searchValue, setSearchValue}: headerProps) => {
                     value={searchValue}
                     onChangeText={setSearchValue}
                     placeholder='Search...' />
-        <Feather name="x" size={25} style={{flex: 0.7}} onPress={() => setSearchValue('')}/>
+        <Entypo name="cycle" size={25} style={{flex: 0.8}} onPress={() => { setSearchValue(searchValue) }}/>
+        <Feather name="x" size={25} style={{flex: 0.8}} onPress={() => setSearchValue('')}/>
       </View>
     </SafeAreaView>
   )
