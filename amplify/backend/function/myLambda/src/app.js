@@ -21,12 +21,8 @@ app.use(function(req, res, next) {
  * Hello World (POST) method *
  ******************************/
 
-app.post('/ecommerce', function(req, res) {
-    var event = req.apiGateway.event;
-    var context = req.apiGateway.context;
-    
-    
-    res.json(req.apiGateway.event);
+app.get('/ecommerce', function(req, res) {
+    res.send("Hello from your first Lambda!");
 });
 
 /*******************************
@@ -292,6 +288,7 @@ app.post('/ecommerce/cartV2/insert', function(req, res) {
                 quantity: quantity,
                 price: data.Items[0].currentPrice[data.Items[0].options.indexOf(option)] * quantity,
                 unitaryPrice: data.Items[0].currentPrice[data.Items[0].options.indexOf(option)],
+                productName: data.Items[0].title
               },
             };
           
@@ -451,7 +448,8 @@ app.post('/ecommerce/makeOrder', function(req, res) {
                   id: orderID,
                   cart: cart,
                   location: location,
-                  totalPrice: totalPrice,
+                  totalPrice: totalPrice.toFixed(2),
+                  userSub: userSub,
                 }
               }
               
@@ -464,6 +462,63 @@ app.post('/ecommerce/makeOrder', function(req, res) {
           }})
     }})
 })
+
+/*******************************
+ * Fetch Orders by UserSub POST *
+ ******************************/
+
+app.post('/ecommerce/fetchOrder/byUser', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    var params = {
+      TableName: 'OrderTable',
+      FilterExpression : 'userSub = :userSub',
+      ExpressionAttributeValues : {
+        ':userSub' : req.body.userSub
+      }
+    };
+    
+    docClient.scan(params, function(err, data) {
+    if (err) {
+      console.warn("Error", err);
+      res.json({error: err});
+    } else {
+      console.warn("Success", data.Item);
+      res.json({body:{data}});
+    }
+  });
+});
+
+/*****************************************************
+ * CART V2 Table, Testing *
+ * 
+ * Fetch of Cart Item
+ *****************************************************/
+
+app.post('/ecommerce/cartV2/fetch', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const { productID, opt, userSub } = req.body;
+    
+    var paramsCartTable = {
+        TableName: 'CartV2Table',
+        FilterExpression : 'productID = :productID and opt = :opt and userSub = :userSub',
+        ExpressionAttributeValues : {
+          ':productID' : productID,
+          ':opt' : opt,
+          ':userSub' : userSub,
+        }
+      };
+    
+    docClient.scan(paramsCartTable, function(err, data) {
+        if (err) {
+          console.warn("Error", err);
+          res.json({error: err});
+        } else {
+          res.send(data);
+        }
+    })
+});
 
 /*******************************
  * Server Initialized *
