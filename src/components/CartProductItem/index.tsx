@@ -23,9 +23,9 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
         API.post('myAPI', '/ecommerce/cartV2/modQuantity', 
         {
             body: {
-                id: product.id,
+                productID: product.id,
                 quantity: newQuantity,
-                option: cartProduct.option,
+                opt: cartProduct.option,
                 userSub: userData.attributes.sub, 
             }
         }
