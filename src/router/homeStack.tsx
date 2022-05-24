@@ -33,8 +33,8 @@ const HeaderComponent = ({searchValue, setSearchValue}: headerProps) => {
                     value={searchValue}
                     onChangeText={setSearchValue}
                     placeholder='Search...' />
-        <Entypo name="cycle" size={25} style={{flex: 0.8}} onPress={() => { setSearchValue(searchValue) }}/>
-        <Feather name="x" size={25} style={{flex: 0.8}} onPress={() => setSearchValue('')}/>
+        <Feather name="refresh-ccw" size={25} style={{flex: 0.8, marginLeft: 10}} onPress={() => { setSearchValue(searchValue) }}/>
+        <Feather name="x" size={30} style={{flex: 0.8}} onPress={() => setSearchValue('')}/>
       </View>
     </SafeAreaView>
   )

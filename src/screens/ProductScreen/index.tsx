@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import style from './style';
 import { Product, CartProduct } from '../../models';
-import { DataStore, Auth } from 'aws-amplify';
+import { DataStore, Auth, API } from 'aws-amplify';
 import { Picker } from '@react-native-picker/picker';
 import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 import { useNavigation } from '@react-navigation/native';
+
+import { v4 as uuidv4 } from 'uuid';
 
 const ProductScreen = () => {
 
@@ -59,6 +61,24 @@ const ProductScreen = () => {
             productID: product.id,
         });
         
+        const test = {
+            body: {
+                id: uuidv4(),
+                productID: product.id,
+                userSub: userData.attributes.sub,
+                option: selectedOption,
+                quantity: quantity,
+            }
+        };
+
+        console.log(test);
+
+        // CARTV2 TEST Implementation ##########
+        API.post('myAPI', '/ecommerce/cartV2/insert', test).then(
+            response => console.log(response)).catch(
+            error => console.log(error));
+        // #####################################
+
         DataStore.save(newCartProduct); // salva nel DataStore l'oggetto creato
         navigation.navigate("Shopping Cart");
     }
