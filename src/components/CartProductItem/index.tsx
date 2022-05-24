@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import style from './style';
 import QuantitySelector from '../QuantitySelector';
 
-import { DataStore, API } from 'aws-amplify';
+import { DataStore, API, Auth } from 'aws-amplify';
 import { CartProduct } from '../../models';
 
 interface CartProductItemProps {
@@ -17,14 +17,19 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
 
     // Aggiornare il valore di Quantity nel datastore
     const updateQuantity = async (newQuantity: number) => {
-        API.post('myAPI', '/ecommerce/fetchCart/addQuantity', 
+
+        const userData = await Auth.currentAuthenticatedUser(); 
+
+        API.post('myAPI', '/ecommerce/cartV2/modQuantity', 
         {
             body: {
-                "id": cartProduct.id,
-                "quantity": newQuantity
+                id: product.id,
+                quantity: newQuantity,
+                option: cartProduct.option,
+                userSub: userData.attributes.sub, 
             }
         }
-        ).then(response => console.log("Updated")).catch((e) => console.log(e));
+        ).then(response => console.log(response)).catch((e) => console.log(e));
         
         // DA IMPLEMENTARE => il DataStore non viene triggerato dalla sola modifica al DynamoDB in automatico.
 
