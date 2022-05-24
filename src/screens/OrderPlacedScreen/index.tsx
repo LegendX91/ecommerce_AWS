@@ -24,6 +24,14 @@ const OrderPlacedScreen = () => {
                     <Text style={style.title}>Congratulations! Your Order has been placed succesfully!</Text>
                     <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, backgroundColor: 'orange', borderColor: 'darkorange'}]}
                                 onPress={() => {
+                                    navigation.navigate("Order Archive");
+                                }}>
+                        <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>
+                                Review Your Order
+                        </Text>
+                    </Pressable>
+                    <Pressable  style={[style.logOutButton, {marginTop: 10, borderWidth: 1, backgroundColor: 'orange', borderColor: 'darkorange'}]}
+                                onPress={() => {
                                     navigation.navigate("Cart Screen");
                                 }}>
                         <Text style={{  color: 'black', fontWeight: 'bold', fontSize: 18}}>

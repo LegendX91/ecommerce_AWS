@@ -24,7 +24,7 @@ const OrderItem = (props: any) => {
                 <Text style={style.title}>Contents: </Text>
                 <FlatList 
                     data={cart.slice(0, 3)} 
-                    renderItem={({item}) => <Text onPress={() => setModalVisible(true)} style={{fontSize:11, fontStyle:'italic'}} numberOfLines={1}> - {cart[cart.indexOf(item)].productName}</Text>}
+                    renderItem={({item}) => <Text onPress={() => setModalVisible(true)} style={{fontSize:13, fontStyle:'italic'}} numberOfLines={1}><Text style={{fontWeight: 'bold'}}> >> {item.quantity}x</Text> {cart[cart.indexOf(item)].productName}</Text>}
                 />
                 {cart.length >= 3 ? <Text>...</Text> : <></>}
             </View>
@@ -45,7 +45,7 @@ const OrderItem = (props: any) => {
                         <View style={{borderWidth: 1, padding: 10, width: '90%', borderRadius: 10, backgroundColor: 'white', borderColor: 'lightgrey'}}>
                             <FlatList
                                 data={cart}
-                                renderItem={({item}) => <Text style={{fontSize:13, fontStyle:'italic'}}> - {cart[cart.indexOf(item)].productName}</Text>}
+                                renderItem={({item}) => <Text style={{fontSize:13, fontStyle:'italic'}}> <Text style={{fontWeight: 'bold'}}>{item.quantity}x</Text> {cart[cart.indexOf(item)].productName}</Text>}
                             />
                         </View>
                         <Button text={"Go Back"} onPress={() => setModalVisible(false)} ></Button>
