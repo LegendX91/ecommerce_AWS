@@ -22,6 +22,7 @@ const ProductScreen = () => {
     const [quantity, setQuantity] = useState(1);
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [duplicateModalVisible, setDuplicateModalVisible] = useState(false);
 
     const route= useRoute(); //parametri
 
@@ -74,13 +75,26 @@ const ProductScreen = () => {
         console.log(test);
 
         // CARTV2 TEST Implementation ##########
-        API.post('myAPI', '/ecommerce/cartV2/insert', test).then(
-            response => console.log('CartV2Table updated with Insert Cart Item')).catch(
-            error => console.log(error));
-        // #####################################
-
-        DataStore.save(newCartProduct); // salva nel DataStore l'oggetto creato
-        navigation.navigate("Shopping Cart");
+        API.post('myAPI', '/ecommerce/cartV2/fetch', 
+        {
+            body: {
+                productID: product.id,
+                userSub: userData.attributes.sub,
+                opt: selectedOption,
+            }
+        }).then(
+            response => {
+                if (response.Count === 0){
+                    API.post('myAPI', '/ecommerce/cartV2/insert', test).then(
+                        response => console.log('CartV2Table updated with Insert Cart Item')).catch(
+                        error => console.log(error));
+                    DataStore.save(newCartProduct); // salva nel DataStore l'oggetto creato
+                    navigation.navigate("Shopping Cart");
+                } else {
+                    setDuplicateModalVisible(true);
+                }
+            }).catch(
+                error => console.log(error));
     }
 
     function discountCondition() {
@@ -184,6 +198,26 @@ const ProductScreen = () => {
                                     <Text style={{margin: 10}}>{product.description}</Text>
                                 </View>
                                 <Button text={"Go Back"} onPress={() => setModalVisible(false)} ></Button>
+                            </Pressable>
+                    </Modal>
+
+                    <Modal
+                        visible={duplicateModalVisible}
+                        onRequestClose={
+                            () => 
+                                setDuplicateModalVisible(false)
+                        }
+                        animationType='fade'
+                        transparent={true}
+                    >
+                            <Pressable 
+                                        style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#f7f5f0', opacity: 0.85}}
+                                        onPress={() => setDuplicateModalVisible(false)}    
+                            >
+                                <View style={{borderWidth: 1, margin: 10, borderRadius: 10, backgroundColor: 'white', borderColor: 'lightgrey'}}>
+                                    <Text style={{margin: 10}}>Item already in cart, please modify with new quantity there!</Text>
+                                </View>
+                                <Button text={"Go to Cart"} onPress={() => {setDuplicateModalVisible(false); navigation.navigate('Shopping Cart')}} ></Button>
                             </Pressable>
                     </Modal>
                     
