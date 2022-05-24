@@ -24,8 +24,11 @@ const MenuScreen = () => {
 
     const navigation = useNavigation();
 
+
+    // TEST LAMBDA FUNCTION
+
     async function helloFromLambda() {
-        API.post('myAPI', '/ecommerce/test', {body:{productID: '36533580-9ed3-4867-af72-d5d0ca059c31'}}).then((response) => {
+        API.get('myAPI', '/ecommerce', {}).then((response) => {
             console.warn(response);
         }).catch(error => console.warn(error));
     }
