@@ -6,6 +6,8 @@ import LocationItem from '../../components/LocationItem';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 
+import { v4 as uuidv4 } from 'uuid';
+
 const LocationScreen = () => {
 
     const [locations, setLocations] = useState([]);
@@ -35,6 +37,29 @@ const LocationScreen = () => {
             error => console.warn(error));
     }
 
+    const placeOrder = async(item) =>{
+
+        const userData = await Auth.currentAuthenticatedUser();
+
+        console.log({
+            body:{
+                userSub: userData.attributes.sub,
+                locationID: item.id,
+            }
+        });
+
+        API.post('myAPI', '/ecommerce/makeOrder', 
+        {
+            body:{
+                userSub: userData.attributes.sub,
+                locationID: item.id,
+                orderID: uuidv4(),
+            }
+        }).then(
+            response => navigation.navigate('Order Placed')).catch(
+            error => console.log(error))
+    }
+
     const isFocused = useIsFocused()
 
     useEffect(() => {
@@ -49,7 +74,7 @@ const LocationScreen = () => {
                 <ActivityIndicator size='large' style={{marginVertical: '75%'}}/> : 
                 <FlatList   data={locations} 
                             renderItem={({item}) => 
-                                <Pressable onPress={() => navigation.navigate('Order Placed')}>
+                                <Pressable onPress={() => placeOrder(item)}>
                                     <LocationItem   key={locations.indexOf(item)} 
                                                 item={item}
                                                 removeItem={removeItem}

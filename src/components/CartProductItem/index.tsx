@@ -29,7 +29,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                 userSub: userData.attributes.sub, 
             }
         }
-        ).then(response => console.log(response)).catch((e) => console.log(e));
+        ).then(response => console.log('CartV2Table Updated with Modify Quantity')).catch((e) => console.log(e));
         
         // DA IMPLEMENTARE => il DataStore non viene triggerato dalla sola modifica al DynamoDB in automatico.
 
@@ -57,7 +57,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                 userSub: userData.attributes.sub, 
             }
         }
-        ).then(response => console.log(response)).catch((e) => console.log(e));
+        ).then(response => console.log('CartV2Table Updated with Delete Option')).catch((e) => console.log(e));
 
         // DA IMPLEMENTARE => il DataStore non viene triggerato dalla sola modifica al DynamoDB in automatico.
         DataStore.delete(CartProduct, cartProduct.id);

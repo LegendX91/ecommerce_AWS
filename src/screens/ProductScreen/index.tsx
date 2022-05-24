@@ -75,7 +75,7 @@ const ProductScreen = () => {
 
         // CARTV2 TEST Implementation ##########
         API.post('myAPI', '/ecommerce/cartV2/insert', test).then(
-            response => console.log(response)).catch(
+            response => console.log('CartV2Table updated with Insert Cart Item')).catch(
             error => console.log(error));
         // #####################################
 

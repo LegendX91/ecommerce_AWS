@@ -234,31 +234,10 @@ app.post('/ecommerce/deleteLocationItem', function(req, res) {
     const {id} = req.body;
     
     var params = {
-      TableName: 'LocationsTable',
-      Key: { 'id': id },
-    };
-    
-    docClient.delete(params, (err, data) => {
-      if(err){
-        res.send(err)
-      }else{
-        res.send({body:{id}})
-      }
-    })
-});
-
-/*******************************
- * TEST PRICE (POST)  *
- ******************************/
-
-app.post('/ecommerce/test', function(req, res) {
-    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
-    
-    var params = {
-      TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
-      FilterExpression : 'productID = :productID',
+      TableName: 'CartV2Table',
+      FilterExpression : 'userSub = :userSub',
       ExpressionAttributeValues : {
-        ':productID' : req.body.productID
+        ':userSub' : req.body.userSub
       }
     };
     
@@ -268,10 +247,223 @@ app.post('/ecommerce/test', function(req, res) {
       res.json({error: err});
     } else {
       console.warn("Success", data.Item);
-      res.json({body:{data}});;
+      res.json({body:{data}});
     }
   });
 });
+
+
+/*****************************************************
+ * CART V2 Table, Testing *
+ * 
+ * Insert of a cart item, by option and currentPrice
+ *****************************************************/
+
+app.post('/ecommerce/cartV2/insert', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const {id, productID, userSub, option, quantity} = req.body;
+    
+    if(!id || !productID || !userSub || !option || !quantity){
+      res.send("ERROR!")
+    }else{
+      
+      var paramsProductTable = {
+        TableName: 'Product-a2s2mavb3ng2pkzyqks67bsbxm-dev',
+        FilterExpression : 'id = :productID',
+        ExpressionAttributeValues : {
+          ':productID' : productID
+        }
+      };
+    
+      docClient.scan(paramsProductTable, function(err, data) {
+        if (err) {
+          console.warn("Error", err);
+          res.json({error: err});
+        } else {
+      
+            var paramsCartTable = {
+              TableName: 'CartV2Table',
+              Item: {
+                id: id,
+                productID: productID,
+                userSub: userSub,
+                opt: option,
+                quantity: quantity,
+                price: data.Items[0].currentPrice[data.Items[0].options.indexOf(option)] * quantity,
+                unitaryPrice: data.Items[0].currentPrice[data.Items[0].options.indexOf(option)],
+              },
+            };
+          
+            docClient.put(paramsCartTable, (err, data) => {
+              if(err){
+                res.send(err)
+              }else{
+                res.send('ok...?');
+              }
+            })
+      }
+    })
+  }
+});
+
+/*****************************************************
+ * CART V2 Table, Testing *
+ * 
+ * Quantity Modifier
+ *****************************************************/
+
+app.post('/ecommerce/cartV2/modQuantity', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const { productID, quantity, opt, userSub } = req.body;
+    
+    var paramsCartTable = {
+        TableName: 'CartV2Table',
+        FilterExpression : 'productID = :productID and opt = :opt and userSub = :userSub',
+        ExpressionAttributeValues : {
+          ':productID' : productID,
+          ':opt' : opt,
+          ':userSub' : userSub,
+        }
+      };
+    
+    docClient.scan(paramsCartTable, function(err, data) {
+        if (err) {
+          console.warn("Error", err);
+          res.json({error: err});
+        } else {
+          var paramsCartTable2 = {
+              TableName: 'CartV2Table',
+              Key: { id: data.Items[0].id},
+              UpdateExpression : 'SET #quantity = :quantity, #price = :price',
+              ExpressionAttributeNames: {
+              '#quantity': 'quantity',
+              '#price': 'price',
+              },
+              ExpressionAttributeValues : {
+                ':quantity' : quantity,
+                ':price' : data.Items[0].unitaryPrice * quantity
+              }
+            };
+          
+          docClient.update(paramsCartTable2, (err, data) => {
+            if(err){
+              res.send(err)
+            }else{
+              res.send(data)
+            }
+          })
+        }
+    })
+});
+
+/*****************************************************
+ * CART V2 Table, Testing *
+ * 
+ * Delete of Cart Item
+ *****************************************************/
+
+app.post('/ecommerce/cartV2/delete', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const { productID, quantity, opt, userSub } = req.body;
+    
+    var paramsCartTable = {
+        TableName: 'CartV2Table',
+        FilterExpression : 'productID = :productID and opt = :opt and userSub = :userSub',
+        ExpressionAttributeValues : {
+          ':productID' : productID,
+          ':opt' : opt,
+          ':userSub' : userSub,
+        }
+      };
+    
+    docClient.scan(paramsCartTable, function(err, data) {
+        if (err) {
+          console.warn("Error", err);
+          res.json({error: err});
+        } else {
+          var paramsCartTable2 = {
+              TableName: 'CartV2Table',
+              Key: { id: data.Items[0].id},
+            };
+          
+          docClient.delete(paramsCartTable2, (err, data) => {
+            if(err){
+              res.send(err)
+            }else{
+              res.send(data)
+            }
+          })
+        }
+    })
+});
+
+/*****************************************************
+ * Order Table, Testing *
+ * 
+ * Placement of an Order
+ *****************************************************/
+
+app.post('/ecommerce/makeOrder', function(req, res) {
+    var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+    
+    const { locationID, userSub, orderID } = req.body;
+    
+    var paramsCartTable = {
+        TableName: 'CartV2Table',
+        FilterExpression : 'userSub = :userSub',
+        ExpressionAttributeValues : {
+          ':userSub' : userSub,
+        }
+      };
+    
+    docClient.scan(paramsCartTable, function(err, data) {
+        if (err) {
+          console.warn("Error", err);
+          res.json({error: err});
+        } else {
+          const cart = data.Items;
+          
+          let totalPrice = 0;
+          cart.map(item => {
+            totalPrice = Number.parseFloat(totalPrice) + Number.parseFloat(item.price);
+          });
+          
+          var paramsLocationsTable = {
+              TableName: 'LocationsTable',
+              FilterExpression : 'id = :id',
+              ExpressionAttributeValues : {
+                ':id' : locationID,
+              }
+            };
+          
+          docClient.scan(paramsLocationsTable, (err, data) => {
+            if(err){
+              res.send(err)
+            }else{
+              const location = data.Items;
+              
+              var paramsOrderTable = {
+                TableName: 'OrderTable',
+                Item: {
+                  id: orderID,
+                  cart: cart,
+                  location: location,
+                  totalPrice: totalPrice,
+                }
+              }
+              
+              docClient.put(paramsOrderTable, (err, data) => {
+                if(err){
+                  res.send(err)
+                }else{
+                  res.send(data)
+                }})
+          }})
+    }})
+})
 
 /*******************************
  * Server Initialized *
